@@ -72,6 +72,23 @@
 /* No comment provided by engineer. */
 "This year" = "今年";
 
+"Poll ends in %dday" = "离投票结束%d天";
+"Poll ends in %ddays" = "离投票结束%d天";
+"Poll ends in %dday %dhour" = "离投票结束%d天%d小时";
+"Poll ends in %dday %dhours" = "离投票结束%d天%d小时";
+"Poll ends in %ddays %dhour" = "离投票结束%d天%d小时";
+"Poll ends in %ddays %dhours" = "离投票结束%d天%d小时";
+"Poll ends in %dhour" = "离投票结束%d小时";
+"Poll ends in %dhours" = "离投票结束%d小时";
+"Poll ends in %dminute" = "离投票结束%d分钟";
+"Poll ends in %dminutes" = "离投票结束%d分钟";
+"Poll ends in %dminute %dsecond" = "离投票结束%d分钟%d秒";
+"Poll ends in %dminute %dseconds" = "离投票结束%d分钟%d秒";
+"Poll ends in %dminutes %dsecond" = "离投票结束%d分钟%d秒";
+"Poll ends in %dminutes %dseconds" = "离投票结束%d分钟%d秒";
+"Poll ends in %dsecond" = "离投票结束%d秒";
+"Poll ends in %dseconds" = "离投票结束%d秒";
+
 "Buy Now" = "立即购买";
 "Store" = "商店";
 "Install:" = "安装:";
@@ -290,3 +307,32 @@
 "Due to violation of community policies, you have been banned from this activity." = "由于违反社区政策，您已被禁止参加此活动。";
 "Save" = "保存";
 "Add Post Tag" = "添加帖子标签";
+"Say something …" = "说点什么...";
+"Photos" = "照片";
+"Poll" = "投票";
+"New Post" = "新建帖子";
+"PHOTO" = "照片";
+"VIDEO" = "视频";
+"Poll Content" = "投票内容";
+"Add New Option" = "添加新选项";
+"Closing Date" = "截止日期";
+"Poll Options" = "投票选项";
+"Select the Closing Date (optional)" = "选择截止日期（可选）";
+"Option Content" = "选项内容";
+"Add Photo / Video" = "添加照片/视频";
+"ToPollPrompt" = "是否要清除当前内容并创建新的投票？";
+"PollOptionsShortPrompt" = "请输入2-8个投票选项。";
+"Select the Closing Date" = "选择截止日期";
+"Confirm" = "确认";
+"Poll Closed" = "投票已关闭";
+"The selected end time has passed." = "选定的结束时间已过。";
+"RemovePollPrompt" = "是否要清除当前内容并创建新帖子？";
+"See all" = "查看全部";
+"voted in your poll" = "在您的投票中投票";
+"Your poll ended. Click to see results." = "您的投票结束。点击查看结果。";
+"my vote" = "我投的票";
+"Year" = "年";
+"Month" = "月";
+"Day" = "日";
+"Hour" = "时";
+"Minute" = "分";

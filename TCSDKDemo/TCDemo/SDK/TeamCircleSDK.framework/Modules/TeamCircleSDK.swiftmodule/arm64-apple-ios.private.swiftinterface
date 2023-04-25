@@ -1,9 +1,10 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.7.1 (swiftlang-5.7.1.135.3 clang-1400.0.29.51)
+// swift-compiler-version: Apple Swift version 5.8 (swiftlang-5.8.0.124.2 clang-1403.0.22.11.100)
 // swift-module-flags: -target arm64-apple-ios10.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -module-name TeamCircleSDK
 // swift-module-flags-ignorable: -enable-bare-slash-regex
 import AVFoundation
 import AWSS3
+import AudioToolbox
 import CommonCrypto
 import CoreGraphics
 import CoreMotion
@@ -30,6 +31,7 @@ import _Concurrency
 import _StringProcessing
 import libkern
 import sqlcipher
+import youtube_ios_player_helper
 @_inheritsConvenienceInitializers @objc @_Concurrency.MainActor(unsafe) open class TCBaseVCtrl : UIKit.UIViewController {
   @_Concurrency.MainActor(unsafe) @objc override dynamic open func viewDidLoad()
   @_Concurrency.MainActor(unsafe) @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
@@ -85,7 +87,7 @@ extension UIKit.UILabel {
 }
 @objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) final public class TCFeedsVCtrl : TeamCircleSDK.TCBaseVCtrl {
   @objc @IBOutlet @_Concurrency.MainActor(unsafe) weak final public var collectionView: UIKit.UICollectionView!
-  @objc @_Concurrency.MainActor(unsafe) weak final public var delegate: TeamCircleSDK.TCFeedViewDelegate?
+  @objc @_Concurrency.MainActor(unsafe) weak final public var delegate: (any TeamCircleSDK.TCFeedViewDelegate)?
   @objc deinit
   @_Concurrency.MainActor(unsafe) @objc override final public var canBecomeFirstResponder: Swift.Bool {
     @objc get
@@ -108,7 +110,7 @@ extension TeamCircleSDK.TCFeedsVCtrl : IGListKit.ListAdapterDelegate {
   @_Concurrency.MainActor(unsafe) @objc final public func listAdapter(_ listAdapter: IGListKit.ListAdapter, didEndDisplaying object: Any, at index: Swift.Int)
 }
 extension TeamCircleSDK.TCFeedsVCtrl : IGListKit.ListAdapterDataSource {
-  @_Concurrency.MainActor(unsafe) @objc final public func objects(for listAdapter: IGListKit.ListAdapter) -> [IGListDiffKit.ListDiffable]
+  @_Concurrency.MainActor(unsafe) @objc final public func objects(for listAdapter: IGListKit.ListAdapter) -> [any IGListDiffKit.ListDiffable]
   @_Concurrency.MainActor(unsafe) @objc final public func listAdapter(_ listAdapter: IGListKit.ListAdapter, sectionControllerFor object: Any) -> IGListKit.ListSectionController
   @_Concurrency.MainActor(unsafe) @objc final public func emptyView(for listAdapter: IGListKit.ListAdapter) -> UIKit.UIView?
 }
@@ -133,8 +135,8 @@ extension TeamCircleSDK.TCFeedsVCtrl : GiphyUISDK.GiphyDelegate {
   @_Concurrency.MainActor(unsafe) @objc final public func didDismiss(controller: GiphyUISDK.GiphyViewController?)
 }
 extension TeamCircleSDK.TCFeedsVCtrl : UIKit.UIViewControllerPreviewingDelegate {
-  @_Concurrency.MainActor(unsafe) @objc final public func previewingContext(_ previewingContext: UIKit.UIViewControllerPreviewing, viewControllerForLocation location: CoreFoundation.CGPoint) -> UIKit.UIViewController?
-  @_Concurrency.MainActor(unsafe) @objc final public func previewingContext(_ previewingContext: UIKit.UIViewControllerPreviewing, commit viewControllerToCommit: UIKit.UIViewController)
+  @_Concurrency.MainActor(unsafe) @objc final public func previewingContext(_ previewingContext: any UIKit.UIViewControllerPreviewing, viewControllerForLocation location: CoreFoundation.CGPoint) -> UIKit.UIViewController?
+  @_Concurrency.MainActor(unsafe) @objc final public func previewingContext(_ previewingContext: any UIKit.UIViewControllerPreviewing, commit viewControllerToCommit: UIKit.UIViewController)
 }
 extension TeamCircleSDK.TCFeedsVCtrl {
   @_Concurrency.MainActor(unsafe) @objc override final public func viewWillAppear(_ animated: Swift.Bool)
@@ -165,7 +167,7 @@ extension TeamCircleSDK.TCFeedsVCtrl {
   @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
 }
 extension TeamCircleSDK.TCProfileVCtrl : IGListKit.ListAdapterDataSource, UIKit.UIScrollViewDelegate {
-  @_Concurrency.MainActor(unsafe) @objc dynamic public func objects(for listAdapter: IGListKit.ListAdapter) -> [IGListDiffKit.ListDiffable]
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func objects(for listAdapter: IGListKit.ListAdapter) -> [any IGListDiffKit.ListDiffable]
   @_Concurrency.MainActor(unsafe) @objc dynamic public func listAdapter(_ listAdapter: IGListKit.ListAdapter, sectionControllerFor object: Any) -> IGListKit.ListSectionController
   @_Concurrency.MainActor(unsafe) @objc dynamic public func emptyView(for listAdapter: IGListKit.ListAdapter) -> UIKit.UIView?
   @_Concurrency.MainActor(unsafe) @objc dynamic public func scrollViewDidScroll(_ scrollView: UIKit.UIScrollView)
@@ -220,7 +222,7 @@ extension TeamCircleSDK.TCProfileVCtrl : IGListKit.ListSingleSectionControllerDe
     get
   }
   @objc public var printLog: Swift.Bool
-  @objc weak public var delegate: TeamCircleSDK.TCManagerDelegate? {
+  @objc weak public var delegate: (any TeamCircleSDK.TCManagerDelegate)? {
     get
   }
   @objc public var tallVersion: Swift.Bool {
@@ -232,26 +234,26 @@ extension TeamCircleSDK.TCProfileVCtrl : IGListKit.ListSingleSectionControllerDe
   @objc public func initSDK(appId: Swift.String, appKey: Swift.String, delegate: Any, theme: TeamCircleSDK.TCThemeType = .dark)
   @objc public func userLogin(userId: Swift.String, userName: Swift.String, avatarUrl: Swift.String = "", userEmail: Swift.String = "", userBio: Swift.String = "")
   @objc public func userLogout()
-  @objc public func deleleAccount(complete: @escaping ((Swift.Error?) -> Swift.Void))
-  @objc public func initCircle(complete: ((TeamCircleSDK.TCCircleNavController?, Swift.Error?) -> Swift.Void))
-  @objc public func initStoreBtn(frame: CoreFoundation.CGRect, complete: ((TeamCircleSDK.TCStoreBtn?, Swift.Error?) -> Swift.Void))
-  @objc public func toStoreVCtrl(nav: UIKit.UINavigationController, complete: ((TeamCircleSDK.TCStoreVCtrl?, Swift.Error?) -> Swift.Void))
-  @objc public func initUserCenterBtn(frame: CoreFoundation.CGRect, image: Any, title: Swift.String, complete: ((TeamCircleSDK.TCMeBtn?, Swift.Error?) -> Swift.Void))
-  @objc public func toUserCenterVCtrl(nav: UIKit.UINavigationController, complete: ((TeamCircleSDK.TCProfileVCtrl?, Swift.Error?) -> Swift.Void))
-  @objc public func registeredToProfileVCtrl(nav: UIKit.UINavigationController, complete: ((TeamCircleSDK.TCProfileVCtrl?, Swift.Error?) -> Swift.Void))
+  @objc public func deleleAccount(complete: @escaping (((any Swift.Error)?) -> Swift.Void))
+  @objc public func initCircle(complete: ((TeamCircleSDK.TCCircleNavController?, (any Swift.Error)?) -> Swift.Void))
+  @objc public func initStoreBtn(frame: CoreFoundation.CGRect, complete: ((TeamCircleSDK.TCStoreBtn?, (any Swift.Error)?) -> Swift.Void))
+  @objc public func toStoreVCtrl(nav: UIKit.UINavigationController, complete: ((TeamCircleSDK.TCStoreVCtrl?, (any Swift.Error)?) -> Swift.Void))
+  @objc public func initUserCenterBtn(frame: CoreFoundation.CGRect, image: Any, title: Swift.String, complete: ((TeamCircleSDK.TCMeBtn?, (any Swift.Error)?) -> Swift.Void))
+  @objc public func toUserCenterVCtrl(nav: UIKit.UINavigationController, complete: ((TeamCircleSDK.TCProfileVCtrl?, (any Swift.Error)?) -> Swift.Void))
+  @objc public func registeredToProfileVCtrl(nav: UIKit.UINavigationController, complete: ((TeamCircleSDK.TCProfileVCtrl?, (any Swift.Error)?) -> Swift.Void))
   @objc public func requestUnreadMessageCount()
   @objc public func requestUnreadIMMessageCount()
   @objc public func judgeLoadView()
-  @objc public func initNotificBtn(frame: CoreFoundation.CGRect, image: Any, title: Swift.String, complete: ((TeamCircleSDK.TCNotificBtn?, Swift.Error?) -> Swift.Void))
-  @objc public func jumpToNotificationCenter(nav: UIKit.UINavigationController, complete: ((TeamCircleSDK.TCNotificationVCtrl?, Swift.Error?) -> Swift.Void))
-  @objc public func initFeedController(nav: UIKit.UINavigationController, complete: ((TeamCircleSDK.TCFeedsVCtrl?, Swift.Error?) -> Swift.Void))
-  @objc public func initNewPostBtn(frame: CoreFoundation.CGRect, image: Any, title: Swift.String, complete: ((TeamCircleSDK.TCPostShareBtn?, Swift.Error?) -> Swift.Void))
-  @objc public func toNewPostVCtrl(complete: ((Swift.Error?) -> Swift.Void))
-  @objc public func initSearchBtn(frame: CoreFoundation.CGRect, image: Any, title: Swift.String, complete: ((TeamCircleSDK.TCSearchBtn?, Swift.Error?) -> Swift.Void))
-  @objc public func toSearchVCtrl(complete: ((Swift.Error?) -> Swift.Void))
-  @objc public func initCustomerPostBar(frame: CoreFoundation.CGRect, nav: UIKit.UINavigationController, productId: Swift.Int, complete: ((TeamCircleSDK.TCStorePostBarView?, Swift.Error?) -> Swift.Void))
+  @objc public func initNotificBtn(frame: CoreFoundation.CGRect, image: Any, title: Swift.String, complete: ((TeamCircleSDK.TCNotificBtn?, (any Swift.Error)?) -> Swift.Void))
+  @objc public func jumpToNotificationCenter(nav: UIKit.UINavigationController, complete: ((TeamCircleSDK.TCNotificationVCtrl?, (any Swift.Error)?) -> Swift.Void))
+  @objc public func initFeedController(nav: UIKit.UINavigationController, complete: ((TeamCircleSDK.TCFeedsVCtrl?, (any Swift.Error)?) -> Swift.Void))
+  @objc public func initNewPostBtn(frame: CoreFoundation.CGRect, image: Any, title: Swift.String, complete: ((TeamCircleSDK.TCPostShareBtn?, (any Swift.Error)?) -> Swift.Void))
+  @objc public func toNewPostVCtrl(complete: (((any Swift.Error)?) -> Swift.Void))
+  @objc public func initSearchBtn(frame: CoreFoundation.CGRect, image: Any, title: Swift.String, complete: ((TeamCircleSDK.TCSearchBtn?, (any Swift.Error)?) -> Swift.Void))
+  @objc public func toSearchVCtrl(complete: (((any Swift.Error)?) -> Swift.Void))
+  @objc public func initCustomerPostBar(frame: CoreFoundation.CGRect, nav: UIKit.UINavigationController, productId: Swift.Int, complete: ((TeamCircleSDK.TCStorePostBarView?, (any Swift.Error)?) -> Swift.Void))
   @objc public func accountBanAllActivities() -> Swift.Bool
-  @objc public func setShareJsonController(_ controller: UIKit.UIViewController, complete: ((Swift.Error?) -> Swift.Void))
+  @objc public func setShareJsonController(_ controller: UIKit.UIViewController, complete: (((any Swift.Error)?) -> Swift.Void))
   @objc public func setTextFontRegular(font: UIKit.UIFont? = nil, color: UIKit.UIColor? = nil) -> Swift.Bool
   @objc public func setTextFontBold(font: UIKit.UIFont? = nil, color: UIKit.UIColor? = nil) -> Swift.Bool
   @objc public func setTextFontAction(font: UIKit.UIFont? = nil, color: UIKit.UIColor? = nil) -> Swift.Bool
@@ -280,7 +282,7 @@ extension TeamCircleSDK.TCProfileVCtrl : IGListKit.ListSingleSectionControllerDe
   @objc public func setShareJsonDownloadedTips(tips: Swift.String) -> Swift.Bool
   @objc public func setShareJson(shareJson: TeamCircleSDK.TCShareJson)
   @objc public func clearShareJson()
-  @objc public func initIMBtn(frame: CoreFoundation.CGRect, image: Any, title: Swift.String, complete: ((TeamCircleSDK.TCIMBtn?, Swift.Error?) -> Swift.Void))
+  @objc public func initIMBtn(frame: CoreFoundation.CGRect, image: Any, title: Swift.String, complete: ((TeamCircleSDK.TCIMBtn?, (any Swift.Error)?) -> Swift.Void))
   @objc public func isLoggedinIM() -> Swift.Bool
   @objc public func toChatListAction(nav: UIKit.UINavigationController)
   @objc public func toChatAction(nav: UIKit.UINavigationController, conversationId: Swift.String)
@@ -850,8 +852,8 @@ public enum TCError {
   }
 }
 extension ObjectiveC.NSObject : IGListDiffKit.ListDiffable {
-  @objc dynamic public func diffIdentifier() -> ObjectiveC.NSObjectProtocol
-  @objc dynamic public func isEqual(toDiffableObject object: IGListDiffKit.ListDiffable?) -> Swift.Bool
+  @objc dynamic public func diffIdentifier() -> any ObjectiveC.NSObjectProtocol
+  @objc dynamic public func isEqual(toDiffableObject object: (any IGListDiffKit.ListDiffable)?) -> Swift.Bool
 }
 @_hasMissingDesignatedInitializers final public class TCMessage {
   public static let shared: TeamCircleSDK.TCMessage
@@ -870,8 +872,8 @@ extension ObjectiveC.NSObject : IGListDiffKit.ListDiffable {
   @objc deinit
 }
 extension TeamCircleSDK.TCShareViewModel {
-  @objc override final public func diffIdentifier() -> ObjectiveC.NSObjectProtocol
-  @objc override final public func isEqual(toDiffableObject object: IGListDiffKit.ListDiffable?) -> Swift.Bool
+  @objc override final public func diffIdentifier() -> any ObjectiveC.NSObjectProtocol
+  @objc override final public func isEqual(toDiffableObject object: (any IGListDiffKit.ListDiffable)?) -> Swift.Bool
 }
 @_inheritsConvenienceInitializers @objc @_Concurrency.MainActor(unsafe) public class TCPostShareBtn : TeamCircleSDK.TCBaseView {
   @_Concurrency.MainActor(unsafe) @objc override public init(frame: CoreFoundation.CGRect, image: Any, title: Swift.String)
@@ -912,7 +914,7 @@ extension TeamCircleSDK.TCNotificationVCtrl : UIKit.UIScrollViewDelegate {
   @_Concurrency.MainActor(unsafe) @objc public func scrollViewDidScroll(_ scrollView: UIKit.UIScrollView)
   @_Concurrency.MainActor(unsafe) @objc public func scrollViewWillBeginDragging(_ scrollView: UIKit.UIScrollView)
   @_Concurrency.MainActor(unsafe) @objc public func scrollViewDidEndScrollingAnimation(_ scrollView: UIKit.UIScrollView)
-  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewWillTransition(to size: CoreFoundation.CGSize, with coordinator: UIKit.UIViewControllerTransitionCoordinator)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewWillTransition(to size: CoreFoundation.CGSize, with coordinator: any UIKit.UIViewControllerTransitionCoordinator)
   @_Concurrency.MainActor(unsafe) @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
   @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
   @objc deinit
