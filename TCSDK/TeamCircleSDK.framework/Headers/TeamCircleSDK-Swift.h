@@ -426,6 +426,7 @@ SWIFT_CLASS("_TtC13TeamCircleSDK12TCFeedsVCtrl")
 @interface TCFeedsVCtrl : TCBaseVCtrl
 @property (nonatomic, weak) IBOutlet UICollectionView * _Null_unspecified collectionView;
 @property (nonatomic, weak) id <TCFeedViewDelegate> _Nullable delegate;
+@property (nonatomic, strong) UINavigationController * _Nullable nav;
 @property (nonatomic, readonly) BOOL canBecomeFirstResponder;
 @property (nonatomic, readonly, strong) UIView * _Nullable inputAccessoryView;
 - (void)viewDidLoad;
@@ -600,7 +601,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) TCManager * 
 - (void)initSearchBtnWithFrame:(CGRect)frame image:(id _Nonnull)image title:(NSString * _Nonnull)title complete:(SWIFT_NOESCAPE void (^ _Nonnull)(TCSearchBtn * _Nullable, NSError * _Nullable))complete SWIFT_METHOD_FAMILY(none);
 /// Jump to search page
 - (void)toSearchVCtrlWithComplete:(SWIFT_NOESCAPE void (^ _Nonnull)(NSError * _Nullable))complete;
-- (void)initCustomerPostBarWithFrame:(CGRect)frame nav:(UINavigationController * _Nonnull)nav productId:(NSInteger)productId complete:(SWIFT_NOESCAPE void (^ _Nonnull)(TCStorePostBarView * _Nullable, NSError * _Nullable))complete SWIFT_METHOD_FAMILY(none);
+- (void)initCustomerPostBarWithFrame:(CGRect)frame nav:(UINavigationController * _Nonnull)nav productCode:(NSString * _Nonnull)productCode complete:(SWIFT_NOESCAPE void (^ _Nonnull)(TCStorePostBarView * _Nullable, NSError * _Nullable))complete SWIFT_METHOD_FAMILY(none);
 - (BOOL)accountBanAllActivities SWIFT_WARN_UNUSED_RESULT;
 /// Set share json controller
 - (void)setShareJsonController:(UIViewController * _Nonnull)controller complete:(SWIFT_NOESCAPE void (^ _Nonnull)(NSError * _Nullable))complete;
@@ -969,7 +970,7 @@ SWIFT_CLASS("_TtC13TeamCircleSDK10TCStoreBtn")
 
 SWIFT_CLASS("_TtC13TeamCircleSDK18TCStorePostBarView")
 @interface TCStorePostBarView : UIView
-- (nonnull instancetype)initWithFrame:(CGRect)frame productId:(NSInteger)productId navigationController:(UINavigationController * _Nonnull)navigationController OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithFrame:(CGRect)frame productCode:(NSString * _Nonnull)productCode navigationController:(UINavigationController * _Nonnull)navigationController OBJC_DESIGNATED_INITIALIZER;
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder SWIFT_UNAVAILABLE;
 - (void)layoutSubviews;
 - (nonnull instancetype)initWithFrame:(CGRect)frame SWIFT_UNAVAILABLE;

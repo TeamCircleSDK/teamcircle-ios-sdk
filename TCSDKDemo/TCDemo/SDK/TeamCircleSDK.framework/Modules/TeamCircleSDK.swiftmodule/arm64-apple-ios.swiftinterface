@@ -52,13 +52,13 @@ import youtube_ios_player_helper
   @objc deinit
 }
 @_hasMissingDesignatedInitializers @objc @_Concurrency.MainActor(unsafe) public class TCStorePostBarView : UIKit.UIView {
-  @_Concurrency.MainActor(unsafe) final public let productId: Swift.Int
+  @_Concurrency.MainActor(unsafe) final public let productCode: Swift.String
   @_Concurrency.MainActor(unsafe) public var postCountDidChanged: ((_ count: Swift.Int) -> Swift.Void)?
   @_Concurrency.MainActor(unsafe) public var collectionView: UIKit.UICollectionView {
     get
     set
   }
-  @objc @_Concurrency.MainActor(unsafe) public init(frame: CoreFoundation.CGRect, productId: Swift.Int, navigationController: UIKit.UINavigationController)
+  @objc @_Concurrency.MainActor(unsafe) public init(frame: CoreFoundation.CGRect, productCode: Swift.String, navigationController: UIKit.UINavigationController)
   @_Concurrency.MainActor(unsafe) @objc override dynamic public func layoutSubviews()
   @objc deinit
 }
@@ -88,6 +88,7 @@ extension UIKit.UILabel {
 @objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) final public class TCFeedsVCtrl : TeamCircleSDK.TCBaseVCtrl {
   @objc @IBOutlet @_Concurrency.MainActor(unsafe) weak final public var collectionView: UIKit.UICollectionView!
   @objc @_Concurrency.MainActor(unsafe) weak final public var delegate: (any TeamCircleSDK.TCFeedViewDelegate)?
+  @objc @_Concurrency.MainActor(unsafe) final public var nav: UIKit.UINavigationController?
   @objc deinit
   @_Concurrency.MainActor(unsafe) @objc override final public var canBecomeFirstResponder: Swift.Bool {
     @objc get
@@ -251,7 +252,7 @@ extension TeamCircleSDK.TCProfileVCtrl : IGListKit.ListSingleSectionControllerDe
   @objc public func toNewPostVCtrl(complete: (((any Swift.Error)?) -> Swift.Void))
   @objc public func initSearchBtn(frame: CoreFoundation.CGRect, image: Any, title: Swift.String, complete: ((TeamCircleSDK.TCSearchBtn?, (any Swift.Error)?) -> Swift.Void))
   @objc public func toSearchVCtrl(complete: (((any Swift.Error)?) -> Swift.Void))
-  @objc public func initCustomerPostBar(frame: CoreFoundation.CGRect, nav: UIKit.UINavigationController, productId: Swift.Int, complete: ((TeamCircleSDK.TCStorePostBarView?, (any Swift.Error)?) -> Swift.Void))
+  @objc public func initCustomerPostBar(frame: CoreFoundation.CGRect, nav: UIKit.UINavigationController, productCode: Swift.String, complete: ((TeamCircleSDK.TCStorePostBarView?, (any Swift.Error)?) -> Swift.Void))
   @objc public func accountBanAllActivities() -> Swift.Bool
   @objc public func setShareJsonController(_ controller: UIKit.UIViewController, complete: (((any Swift.Error)?) -> Swift.Void))
   @objc public func setTextFontRegular(font: UIKit.UIFont? = nil, color: UIKit.UIColor? = nil) -> Swift.Bool

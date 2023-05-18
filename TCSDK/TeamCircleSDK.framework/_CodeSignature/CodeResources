@@ -6,7 +6,7 @@
 	<dict>
 		<key>.DS_Store</key>
 		<data>
-		jEC5QdGZFQB9Iye4+LXPhkazWcw=
+		plz2B7bcF3jQPLDV11cwg6m0EPs=
 		</data>
 		<key>Circle.storyboardc/06R-89-3YG-view-pDh-Vl-EjT.nib/objects-11.0+.nib</key>
 		<data>
@@ -902,7 +902,7 @@
 		</data>
 		<key>Headers/TCCircleHomeVCtrl.h</key>
 		<data>
-		+Jy3WZhELVBdUXCQnPaLniJ892o=
+		+myFNTidqf4wrzJ85F0Ae1J3D6U=
 		</data>
 		<key>Headers/TCEaseIMHeader.h</key>
 		<data>
@@ -910,7 +910,7 @@
 		</data>
 		<key>Headers/TeamCircleSDK-Swift.h</key>
 		<data>
-		pQ478DwIFMZsBfZ5Pmg9cyfU85c=
+		FquUeU+OC0VJw961MZWLFmtOOo4=
 		</data>
 		<key>Headers/TeamCircleSDK.h</key>
 		<data>
@@ -930,19 +930,19 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		reR4uvKqilwEsyKfWj8eeBHOKEU=
+		eSNn3C48y2R5rga/cPbQ4/1aSEI=
 		</data>
 		<key>Modules/TeamCircleSDK.swiftmodule/Project/arm64-apple-ios.swiftsourceinfo</key>
 		<data>
-		h5VXJj/uTxf+JhaDzzmC8pE6NuM=
+		7TWhBQoKgUOyKCuI+JqB/Z8jhCw=
 		</data>
 		<key>Modules/TeamCircleSDK.swiftmodule/arm64-apple-ios.abi.json</key>
 		<data>
-		u9clFRahFuOvoM/oO5FAyLuxs0U=
+		JQd7cT/5QIS8It8W97ycIdDLpSg=
 		</data>
 		<key>Modules/TeamCircleSDK.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
 		<data>
-		ChoXFcsUOBRralTzCw/pwWPRupg=
+		2VKBkIss68Ar6KkjpRuWlRmwvsI=
 		</data>
 		<key>Modules/TeamCircleSDK.swiftmodule/arm64-apple-ios.swiftdoc</key>
 		<data>
@@ -950,11 +950,11 @@
 		</data>
 		<key>Modules/TeamCircleSDK.swiftmodule/arm64-apple-ios.swiftinterface</key>
 		<data>
-		ChoXFcsUOBRralTzCw/pwWPRupg=
+		2VKBkIss68Ar6KkjpRuWlRmwvsI=
 		</data>
 		<key>Modules/TeamCircleSDK.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<data>
-		opHfUHcjcichwF7FhCcIFl4RaGs=
+		4OqdvoP/XthV1H6OqDlUeKl2dVE=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -1095,6 +1095,14 @@
 		<key>TCNewPollCloseDataCell.nib/runtime.nib</key>
 		<data>
 		64HvQcSWu7rkoqihMcVgVcMmzsE=
+		</data>
+		<key>TCNewPollDescrCell.nib/objects-12.3+.nib</key>
+		<data>
+		vG7Kf+yKCXkA33ODQGVx7rdAlG0=
+		</data>
+		<key>TCNewPollDescrCell.nib/runtime.nib</key>
+		<data>
+		OisQ+PJ66YMaV+2i4fiYwO4HDTA=
 		</data>
 		<key>TCNewPollOptionCell.nib/objects-12.3+.nib</key>
 		<data>
@@ -3020,6 +3028,14 @@
 		<data>
 		64HvQcSWu7rkoqihMcVgVcMmzsE=
 		</data>
+		<key>TeamCircleSDK.bundle/TCNewPollDescrCell.nib/objects-12.3+.nib</key>
+		<data>
+		vG7Kf+yKCXkA33ODQGVx7rdAlG0=
+		</data>
+		<key>TeamCircleSDK.bundle/TCNewPollDescrCell.nib/runtime.nib</key>
+		<data>
+		OisQ+PJ66YMaV+2i4fiYwO4HDTA=
+		</data>
 		<key>TeamCircleSDK.bundle/TCNewPollOptionCell.nib/objects-12.3+.nib</key>
 		<data>
 		GQR/5xx1KujTcoyglJ5vDIBwkIg=
@@ -3868,7 +3884,7 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			e5f/lsttB1mXyatBc0QvZFWCFEw=
+			0m7Kk9iIFuZYyp+rje1/uGGGYso=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -5533,7 +5549,7 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			F91watu/4uo4+VZTn7lthhpGdHk=
+			B8+HPx8bxmCyYaCM3WIQI7AN+pY=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -8122,11 +8138,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			+Jy3WZhELVBdUXCQnPaLniJ892o=
+			+myFNTidqf4wrzJ85F0Ae1J3D6U=
 			</data>
 			<key>hash2</key>
 			<data>
-			pmbWpsMLB1V3vFd3e7vX00JX8aEzBQeMawFKEtgigNM=
+			kvNTMZqi6JIY5Etq8uNThsab6ZO7m0k/Asq+a2aKutc=
 			</data>
 		</dict>
 		<key>Headers/TCEaseIMHeader.h</key>
@@ -8144,11 +8160,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			pQ478DwIFMZsBfZ5Pmg9cyfU85c=
+			FquUeU+OC0VJw961MZWLFmtOOo4=
 			</data>
 			<key>hash2</key>
 			<data>
-			07v7nyFANH3wD4gT0sLF134YGE05Bzodjc67zj5lEmY=
+			GDWulomDpvG19GtKS651OlaIfaPkzv8phY81Kw1dV3A=
 			</data>
 		</dict>
 		<key>Headers/TeamCircleSDK.h</key>
@@ -8199,33 +8215,33 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			h5VXJj/uTxf+JhaDzzmC8pE6NuM=
+			7TWhBQoKgUOyKCuI+JqB/Z8jhCw=
 			</data>
 			<key>hash2</key>
 			<data>
-			2CKq3fUH6EC0/gi9EtGoA5x/J6ScDNEKnG/0dJKfZKs=
+			stymevMOyaIAWNko+DSA0dgKiQoONCFLx5pL8cUi/ck=
 			</data>
 		</dict>
 		<key>Modules/TeamCircleSDK.swiftmodule/arm64-apple-ios.abi.json</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			u9clFRahFuOvoM/oO5FAyLuxs0U=
+			JQd7cT/5QIS8It8W97ycIdDLpSg=
 			</data>
 			<key>hash2</key>
 			<data>
-			ake6l0mZPrGQH/+rWj9ZbP5L4xx9FwNh9VZEZx6Uup8=
+			vNKRTKLyM79yMRyWNfiiL1i+9kc0G+x/navL+BJszBY=
 			</data>
 		</dict>
 		<key>Modules/TeamCircleSDK.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			ChoXFcsUOBRralTzCw/pwWPRupg=
+			2VKBkIss68Ar6KkjpRuWlRmwvsI=
 			</data>
 			<key>hash2</key>
 			<data>
-			yrN3hKoU15U0NE+s/mX2IXhVX2qT+2hy1U0jtWiIcT4=
+			jvMvOrtLiP4Yapeg247AtNFPZ1hfY7z6Oy7kkmcE/N0=
 			</data>
 		</dict>
 		<key>Modules/TeamCircleSDK.swiftmodule/arm64-apple-ios.swiftdoc</key>
@@ -8243,22 +8259,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			ChoXFcsUOBRralTzCw/pwWPRupg=
+			2VKBkIss68Ar6KkjpRuWlRmwvsI=
 			</data>
 			<key>hash2</key>
 			<data>
-			yrN3hKoU15U0NE+s/mX2IXhVX2qT+2hy1U0jtWiIcT4=
+			jvMvOrtLiP4Yapeg247AtNFPZ1hfY7z6Oy7kkmcE/N0=
 			</data>
 		</dict>
 		<key>Modules/TeamCircleSDK.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			opHfUHcjcichwF7FhCcIFl4RaGs=
+			4OqdvoP/XthV1H6OqDlUeKl2dVE=
 			</data>
 			<key>hash2</key>
 			<data>
-			Boz5W7sArwDRIx++wpXJB7Rw7FnCwJaMBXZcShHjrdE=
+			Y61majgj3jF90IVHiDj0j4Ad3tk0poaRC0hcNcnHTWo=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
@@ -8644,6 +8660,28 @@
 			<key>hash2</key>
 			<data>
 			Pw/t8MwDz/US1l/EisJK0SDUJq4hKJdngthYXzEUToo=
+			</data>
+		</dict>
+		<key>TCNewPollDescrCell.nib/objects-12.3+.nib</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			vG7Kf+yKCXkA33ODQGVx7rdAlG0=
+			</data>
+			<key>hash2</key>
+			<data>
+			gyoXsF/AGityuKVB3XLmIzatTH73Orgc/Vtz/R8rM3o=
+			</data>
+		</dict>
+		<key>TCNewPollDescrCell.nib/runtime.nib</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			OisQ+PJ66YMaV+2i4fiYwO4HDTA=
+			</data>
+			<key>hash2</key>
+			<data>
+			Q7A+DeaOhtfMARSDv+5O8Sv4NfbSf/cueKZoWUYwGnE=
 			</data>
 		</dict>
 		<key>TCNewPollOptionCell.nib/objects-12.3+.nib</key>
@@ -13937,6 +13975,28 @@
 			Pw/t8MwDz/US1l/EisJK0SDUJq4hKJdngthYXzEUToo=
 			</data>
 		</dict>
+		<key>TeamCircleSDK.bundle/TCNewPollDescrCell.nib/objects-12.3+.nib</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			vG7Kf+yKCXkA33ODQGVx7rdAlG0=
+			</data>
+			<key>hash2</key>
+			<data>
+			gyoXsF/AGityuKVB3XLmIzatTH73Orgc/Vtz/R8rM3o=
+			</data>
+		</dict>
+		<key>TeamCircleSDK.bundle/TCNewPollDescrCell.nib/runtime.nib</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			OisQ+PJ66YMaV+2i4fiYwO4HDTA=
+			</data>
+			<key>hash2</key>
+			<data>
+			Q7A+DeaOhtfMARSDv+5O8Sv4NfbSf/cueKZoWUYwGnE=
+			</data>
+		</dict>
 		<key>TeamCircleSDK.bundle/TCNewPollOptionCell.nib/objects-12.3+.nib</key>
 		<dict>
 			<key>hash</key>
@@ -16262,11 +16322,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			e5f/lsttB1mXyatBc0QvZFWCFEw=
+			0m7Kk9iIFuZYyp+rje1/uGGGYso=
 			</data>
 			<key>hash2</key>
 			<data>
-			OHbXn4kQyDzFL5lpTqSNyBj6C67f8lEjAexjMXI9d5k=
+			J4T7SwIoT2/C9ZpfjiUHbSbaoAsNBRHeOIb7325bIjo=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -20829,11 +20889,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			F91watu/4uo4+VZTn7lthhpGdHk=
+			B8+HPx8bxmCyYaCM3WIQI7AN+pY=
 			</data>
 			<key>hash2</key>
 			<data>
-			Y+ycj8jDQH5hR64k7gRnsPXkzHA34v6Tcn1VuvCcuWc=
+			CNP4C1CBNXeQ8iNUXj9ZMrYHeKO61A6e3apBQdKwyjU=
 			</data>
 			<key>optional</key>
 			<true/>

@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setViewLayout;
 - (void)setFeedToTop;
+- (void)setNavigationController:(UINavigationController *)navigationController;
 
 @end
 

@@ -328,7 +328,7 @@
 "The selected end time has passed." = "选定的结束时间已过。";
 "RemovePollPrompt" = "是否要清除当前内容并创建新帖子？";
 "See all" = "查看全部";
-"voted in your poll" = "在您的投票中投票";
+"voted in your poll and picked" = "在您的投票中投票并选择";
 "Your poll ended. Click to see results." = "您的投票结束。点击查看结果。";
 "my vote" = "我投的票";
 "Year" = "年";
@@ -336,3 +336,4 @@
 "Day" = "日";
 "Hour" = "时";
 "Minute" = "分";
+"Description cannot be empty" = "描述不能为空";
