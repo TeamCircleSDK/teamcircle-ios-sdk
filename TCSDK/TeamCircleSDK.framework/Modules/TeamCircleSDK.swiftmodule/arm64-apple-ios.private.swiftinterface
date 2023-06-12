@@ -189,15 +189,16 @@ extension TeamCircleSDK.TCProfileVCtrl : IGListKit.ListSingleSectionControllerDe
   @objc deinit
 }
 @objc public protocol TCManagerDelegate {
-  @objc func teamCirleFail(error: Foundation.NSError)
-  @objc func teamCirleSDKInit()
-  @objc func teamCirleAccountLogin()
-  @objc func teamCirleAccountLogout()
-  @objc func teamCirleDeleteAccount()
-  @objc func teamCirleAccountProfileChange(accountName: Swift.String, avatarUrl: Swift.String, bio: Swift.String)
+  @objc func teamCircleFail(error: Foundation.NSError)
+  @objc func teamCircleSDKInit()
+  @objc func teamCircleAccountLogin()
+  @objc func teamCircleAccountLogout()
+  @objc func teamCircleDeleteAccount()
+  @objc func teamCircleAccountProfileChange(accountName: Swift.String, avatarUrl: Swift.String, bio: Swift.String)
   @objc func shareJsonDownloaded(json: TeamCircleSDK.TCShareViewModel)
   @objc func notificationStateChanged(count: Swift.Int)
   @objc func messageChanged(count: Swift.Int)
+  @objc func teamCircleTapProduct(_ productCode: Swift.String)
 }
 @objc public protocol TCShareControllerDelegate {
   @objc func teamCirleShareClear()
@@ -272,6 +273,12 @@ extension TeamCircleSDK.TCProfileVCtrl : IGListKit.ListSingleSectionControllerDe
   @objc public func setIconBack(icon: UIKit.UIImage) -> Swift.Bool
   @objc public func setShareJsonIcons(downloadIcon: UIKit.UIImage, disableDownloadIcon: UIKit.UIImage, uploadIcon: UIKit.UIImage) -> Swift.Bool
   @objc public func setIconNewPost(icon: UIKit.UIImage) -> Swift.Bool
+  @objc public func setIconEnableSendPost(icon: UIKit.UIImage) -> Swift.Bool
+  @objc public func setIconDisableSendPost(icon: UIKit.UIImage) -> Swift.Bool
+  @objc public func setIconEnableSendGif(icon: UIKit.UIImage) -> Swift.Bool
+  @objc public func setIconDisableSendGif(icon: UIKit.UIImage) -> Swift.Bool
+  @objc public func setIconEnableSendPhoto(icon: UIKit.UIImage) -> Swift.Bool
+  @objc public func setIconDisableSendPhoto(icon: UIKit.UIImage) -> Swift.Bool
   @objc public func setBackgroundEffectColor(color: UIKit.UIColor) -> Swift.Bool
   @objc public func setSystemBackgroundColor(color: UIKit.UIColor) -> Swift.Bool
   @objc public func systemNavigationBarTextColor(color: UIKit.UIColor) -> Swift.Bool

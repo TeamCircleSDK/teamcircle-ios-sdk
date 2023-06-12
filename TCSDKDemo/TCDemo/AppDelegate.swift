@@ -49,7 +49,7 @@ extension AppDelegate : TCManagerDelegate {
         
     }
     
-    func teamCirleAccountProfileChange(accountName: String, avatarUrl: String, bio: String) {
+    func teamCircleAccountProfileChange(accountName: String, avatarUrl: String, bio: String) {
         if var user = TAppManager.shared.user {
             user.username = accountName
             user.avatar = avatarUrl
@@ -59,7 +59,7 @@ extension AppDelegate : TCManagerDelegate {
         }
     }
     
-    func teamCirleFail(error: NSError) {
+    func teamCircleFail(error: NSError) {
         if error.code == 20003 {
             if let vc = getCurrentViewController() {
                 if vc is TLoginController {
@@ -71,19 +71,23 @@ extension AppDelegate : TCManagerDelegate {
         debugPrint(error)
     }
     
-    func teamCirleSDKInit() {
+    func teamCircleSDKInit() {
         
     }
     
-    func teamCirleAccountLogin() {
+    func teamCircleAccountLogin() {
         
     }
     
-    func teamCirleAccountLogout() {
+    func teamCircleAccountLogout() {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "TUserLogout"), object: nil)
     }
     
-    func teamCirleDeleteAccount() {
+    func teamCircleDeleteAccount() {
+        
+    }
+    
+    func teamCircleTapProduct(_ productCode: String) {
         
     }
 }

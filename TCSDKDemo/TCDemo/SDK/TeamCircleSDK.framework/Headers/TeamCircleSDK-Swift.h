@@ -625,6 +625,12 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) TCManager * 
 - (BOOL)setIconBackWithIcon:(UIImage * _Nonnull)icon SWIFT_WARN_UNUSED_RESULT;
 - (BOOL)setShareJsonIconsWithDownloadIcon:(UIImage * _Nonnull)downloadIcon disableDownloadIcon:(UIImage * _Nonnull)disableDownloadIcon uploadIcon:(UIImage * _Nonnull)uploadIcon SWIFT_WARN_UNUSED_RESULT;
 - (BOOL)setIconNewPostWithIcon:(UIImage * _Nonnull)icon SWIFT_WARN_UNUSED_RESULT;
+- (BOOL)setIconEnableSendPostWithIcon:(UIImage * _Nonnull)icon SWIFT_WARN_UNUSED_RESULT;
+- (BOOL)setIconDisableSendPostWithIcon:(UIImage * _Nonnull)icon SWIFT_WARN_UNUSED_RESULT;
+- (BOOL)setIconEnableSendGifWithIcon:(UIImage * _Nonnull)icon SWIFT_WARN_UNUSED_RESULT;
+- (BOOL)setIconDisableSendGifWithIcon:(UIImage * _Nonnull)icon SWIFT_WARN_UNUSED_RESULT;
+- (BOOL)setIconEnableSendPhotoWithIcon:(UIImage * _Nonnull)icon SWIFT_WARN_UNUSED_RESULT;
+- (BOOL)setIconDisableSendPhotoWithIcon:(UIImage * _Nonnull)icon SWIFT_WARN_UNUSED_RESULT;
 /// Background dynamic effect color (comment selected, flashing)
 - (BOOL)setBackgroundEffectColorWithColor:(UIColor * _Nonnull)color SWIFT_WARN_UNUSED_RESULT;
 - (BOOL)setSystemBackgroundColorWithColor:(UIColor * _Nonnull)color SWIFT_WARN_UNUSED_RESULT;
@@ -815,7 +821,6 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) TCManager * 
 - (void)autoLoginDidCompleteWithError:(EMError * _Nullable)aError;
 @end
 
-
 @class EMChatMessage;
 @class EMConversation;
 
@@ -826,29 +831,32 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) TCManager * 
 - (void)onConversationRead:(NSString * _Nonnull)from to:(NSString * _Nonnull)to;
 @end
 
+
 @class NSError;
 @class TCShareViewModel;
 
 SWIFT_PROTOCOL("_TtP13TeamCircleSDK17TCManagerDelegate_")
 @protocol TCManagerDelegate
 /// SDK error
-- (void)teamCirleFailWithError:(NSError * _Nonnull)error;
+- (void)teamCircleFailWithError:(NSError * _Nonnull)error;
 /// SDK initialization succeeded
-- (void)teamCirleSDKInit;
+- (void)teamCircleSDKInit;
 /// User login succeeded
-- (void)teamCirleAccountLogin;
+- (void)teamCircleAccountLogin;
 /// User logout successfully
-- (void)teamCirleAccountLogout;
+- (void)teamCircleAccountLogout;
 /// User clicks delete account
-- (void)teamCirleDeleteAccount;
+- (void)teamCircleDeleteAccount;
 /// User information modification
-- (void)teamCirleAccountProfileChangeWithAccountName:(NSString * _Nonnull)accountName avatarUrl:(NSString * _Nonnull)avatarUrl bio:(NSString * _Nonnull)bio;
+- (void)teamCircleAccountProfileChangeWithAccountName:(NSString * _Nonnull)accountName avatarUrl:(NSString * _Nonnull)avatarUrl bio:(NSString * _Nonnull)bio;
 /// Share json click download
 - (void)shareJsonDownloadedWithJson:(TCShareViewModel * _Nonnull)json;
 /// Unread notifications modified
 - (void)notificationStateChangedWithCount:(NSInteger)count;
 /// Unread im number modification
 - (void)messageChangedWithCount:(NSInteger)count;
+/// User clicked on the product and set it: APP_NATIVE_STORE
+- (void)teamCircleTapProduct:(NSString * _Nonnull)productCode;
 @end
 
 
