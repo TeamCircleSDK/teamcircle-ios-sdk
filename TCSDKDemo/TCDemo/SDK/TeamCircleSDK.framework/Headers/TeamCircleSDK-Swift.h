@@ -625,8 +625,8 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) TCManager * 
 - (BOOL)setIconBackWithIcon:(UIImage * _Nonnull)icon SWIFT_WARN_UNUSED_RESULT;
 - (BOOL)setShareJsonIconsWithDownloadIcon:(UIImage * _Nonnull)downloadIcon disableDownloadIcon:(UIImage * _Nonnull)disableDownloadIcon uploadIcon:(UIImage * _Nonnull)uploadIcon SWIFT_WARN_UNUSED_RESULT;
 - (BOOL)setIconNewPostWithIcon:(UIImage * _Nonnull)icon SWIFT_WARN_UNUSED_RESULT;
-- (BOOL)setIconEnableSendPostWithIcon:(UIImage * _Nonnull)icon SWIFT_WARN_UNUSED_RESULT;
-- (BOOL)setIconDisableSendPostWithIcon:(UIImage * _Nonnull)icon SWIFT_WARN_UNUSED_RESULT;
+- (BOOL)setIconEnableSendCommentWithIcon:(UIImage * _Nonnull)icon SWIFT_WARN_UNUSED_RESULT;
+- (BOOL)setIconDisableSendCommentWithIcon:(UIImage * _Nonnull)icon SWIFT_WARN_UNUSED_RESULT;
 - (BOOL)setIconEnableSendGifWithIcon:(UIImage * _Nonnull)icon SWIFT_WARN_UNUSED_RESULT;
 - (BOOL)setIconDisableSendGifWithIcon:(UIImage * _Nonnull)icon SWIFT_WARN_UNUSED_RESULT;
 - (BOOL)setIconEnableSendPhotoWithIcon:(UIImage * _Nonnull)icon SWIFT_WARN_UNUSED_RESULT;

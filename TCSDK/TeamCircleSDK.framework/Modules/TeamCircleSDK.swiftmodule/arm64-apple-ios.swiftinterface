@@ -273,8 +273,8 @@ extension TeamCircleSDK.TCProfileVCtrl : IGListKit.ListSingleSectionControllerDe
   @objc public func setIconBack(icon: UIKit.UIImage) -> Swift.Bool
   @objc public func setShareJsonIcons(downloadIcon: UIKit.UIImage, disableDownloadIcon: UIKit.UIImage, uploadIcon: UIKit.UIImage) -> Swift.Bool
   @objc public func setIconNewPost(icon: UIKit.UIImage) -> Swift.Bool
-  @objc public func setIconEnableSendPost(icon: UIKit.UIImage) -> Swift.Bool
-  @objc public func setIconDisableSendPost(icon: UIKit.UIImage) -> Swift.Bool
+  @objc public func setIconEnableSendComment(icon: UIKit.UIImage) -> Swift.Bool
+  @objc public func setIconDisableSendComment(icon: UIKit.UIImage) -> Swift.Bool
   @objc public func setIconEnableSendGif(icon: UIKit.UIImage) -> Swift.Bool
   @objc public func setIconDisableSendGif(icon: UIKit.UIImage) -> Swift.Bool
   @objc public func setIconEnableSendPhoto(icon: UIKit.UIImage) -> Swift.Bool
