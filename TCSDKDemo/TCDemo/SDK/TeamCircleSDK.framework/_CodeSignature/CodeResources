@@ -6,7 +6,7 @@
 	<dict>
 		<key>.DS_Store</key>
 		<data>
-		xFojZQIzeXQ4ikzHNeTXNLLNA10=
+		+1c5Xc1Lt7DjVCpVHMR5cGtrZcA=
 		</data>
 		<key>Circle.storyboardc/06R-89-3YG-view-pDh-Vl-EjT.nib/objects-11.0+.nib</key>
 		<data>
@@ -930,15 +930,15 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		SPCqPdrq5n4wstoM7KHuWIaKYSs=
+		C75UFy7Q1oeH4Mdw98tSbHJHhz0=
 		</data>
 		<key>Modules/TeamCircleSDK.swiftmodule/Project/arm64-apple-ios.swiftsourceinfo</key>
 		<data>
-		CUxUtcgAjj+MxUxRxhSGpDhFc+U=
+		L0pQbYx+sbzBdSLSS5y+AjG0hDU=
 		</data>
 		<key>Modules/TeamCircleSDK.swiftmodule/arm64-apple-ios.abi.json</key>
 		<data>
-		5GCGCVXeh39Brz9EuHHeCPwymYA=
+		aTJrYlr6KWe7BWrwFe0sgU4f7TA=
 		</data>
 		<key>Modules/TeamCircleSDK.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
 		<data>
@@ -954,7 +954,7 @@
 		</data>
 		<key>Modules/TeamCircleSDK.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<data>
-		ZLv1sPIJ7Pkzm//YM2o8MPATCVc=
+		3WTxOW51tHmBdWpgQGgseaxpef4=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -4921,17 +4921,29 @@
 		<data>
 		i4Hnnuc2fodWD2r3K6WI4IXaCvY=
 		</data>
-		<key>TeamCircleSDK.bundle/newpost_pollDate.png</key>
+		<key>TeamCircleSDK.bundle/newpost_pollDate_dark.png</key>
 		<data>
 		944bv9qY4x4C+7bJgtE8zoQWdNg=
 		</data>
-		<key>TeamCircleSDK.bundle/newpost_pollDate@2x.png</key>
+		<key>TeamCircleSDK.bundle/newpost_pollDate_dark@2x.png</key>
 		<data>
 		Bo2VoMFMsv3/9a9YhuVoA9EQ06E=
 		</data>
-		<key>TeamCircleSDK.bundle/newpost_pollDate@3x.png</key>
+		<key>TeamCircleSDK.bundle/newpost_pollDate_dark@3x.png</key>
 		<data>
 		apsyeJPB9K4a2ViZwOHOmJ6iBOQ=
+		</data>
+		<key>TeamCircleSDK.bundle/newpost_pollDate_light.png</key>
+		<data>
+		smQL+EUPyUVIk2U1SrgOhbPwRDA=
+		</data>
+		<key>TeamCircleSDK.bundle/newpost_pollDate_light@2x.png</key>
+		<data>
+		g3kzeJ0+4gmwY/KlotuDDfdQct8=
+		</data>
+		<key>TeamCircleSDK.bundle/newpost_pollDate_light@3x.png</key>
+		<data>
+		aDxG7Wp7ulp2/B+VOUC2O5x5hDk=
 		</data>
 		<key>TeamCircleSDK.bundle/newpost_pollSortDis_dark.png</key>
 		<data>
@@ -8215,22 +8227,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			CUxUtcgAjj+MxUxRxhSGpDhFc+U=
+			L0pQbYx+sbzBdSLSS5y+AjG0hDU=
 			</data>
 			<key>hash2</key>
 			<data>
-			KouDC09xt6EcE6HJuXaE1ajqQU8L2D5U0ZcAGzLu0y0=
+			I8Pk8vOyeRdi6kylLnG0VHqTD4WCQuPhDsv8DLnM7cM=
 			</data>
 		</dict>
 		<key>Modules/TeamCircleSDK.swiftmodule/arm64-apple-ios.abi.json</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			5GCGCVXeh39Brz9EuHHeCPwymYA=
+			aTJrYlr6KWe7BWrwFe0sgU4f7TA=
 			</data>
 			<key>hash2</key>
 			<data>
-			FPqRZKyFrRxBWQcEoyjOYEf0Vaak3jM6wHll0DGREj0=
+			TOYhrFjpIQjak+AFBHL2z9x/6SpiR8HmfA0vumzrVNg=
 			</data>
 		</dict>
 		<key>Modules/TeamCircleSDK.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
@@ -8270,11 +8282,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			ZLv1sPIJ7Pkzm//YM2o8MPATCVc=
+			3WTxOW51tHmBdWpgQGgseaxpef4=
 			</data>
 			<key>hash2</key>
 			<data>
-			zZCFAIdGVXCNnWkrES/OgJd9fSl7eSfBt3d+TVXIGlo=
+			hzLiOrIrk34J9QenaDpBatBIoudUtbJJII1n9XiKOCI=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
@@ -19169,7 +19181,7 @@
 			HsNdaShfuFFQ53SIJ24SRpajAiQdMKtgDNPzqEvzFC0=
 			</data>
 		</dict>
-		<key>TeamCircleSDK.bundle/newpost_pollDate.png</key>
+		<key>TeamCircleSDK.bundle/newpost_pollDate_dark.png</key>
 		<dict>
 			<key>hash</key>
 			<data>
@@ -19180,7 +19192,7 @@
 			ur8FdosFLEBc9zmyme8Pm/U5bmDgfhmns/bUsh3ydwk=
 			</data>
 		</dict>
-		<key>TeamCircleSDK.bundle/newpost_pollDate@2x.png</key>
+		<key>TeamCircleSDK.bundle/newpost_pollDate_dark@2x.png</key>
 		<dict>
 			<key>hash</key>
 			<data>
@@ -19191,7 +19203,7 @@
 			VADwuM0qndLaJI0BObZrKBH450PnZYRVGtsiqCc7zXw=
 			</data>
 		</dict>
-		<key>TeamCircleSDK.bundle/newpost_pollDate@3x.png</key>
+		<key>TeamCircleSDK.bundle/newpost_pollDate_dark@3x.png</key>
 		<dict>
 			<key>hash</key>
 			<data>
@@ -19200,6 +19212,39 @@
 			<key>hash2</key>
 			<data>
 			zDIqOlwGF/hNh6YuL6Ylahzo8PWHrS1+JBmaE/WE6Ro=
+			</data>
+		</dict>
+		<key>TeamCircleSDK.bundle/newpost_pollDate_light.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			smQL+EUPyUVIk2U1SrgOhbPwRDA=
+			</data>
+			<key>hash2</key>
+			<data>
+			WLhha1+UMKakV31YogiQ0ZVndI48D5dgFHgmGktiBn0=
+			</data>
+		</dict>
+		<key>TeamCircleSDK.bundle/newpost_pollDate_light@2x.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			g3kzeJ0+4gmwY/KlotuDDfdQct8=
+			</data>
+			<key>hash2</key>
+			<data>
+			jTCWSiavmh/vE7yvD0MXmroR1hZHbj/jzlXS3rBhZTI=
+			</data>
+		</dict>
+		<key>TeamCircleSDK.bundle/newpost_pollDate_light@3x.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			aDxG7Wp7ulp2/B+VOUC2O5x5hDk=
+			</data>
+			<key>hash2</key>
+			<data>
+			JXjX32Peq3Y9I55dbFllM+0tZcp1ppdzuW6WVoWbjks=
 			</data>
 		</dict>
 		<key>TeamCircleSDK.bundle/newpost_pollSortDis_dark.png</key>
