@@ -236,7 +236,7 @@ extension TeamCircleSDK.TCProfileVCtrl : IGListKit.ListSingleSectionControllerDe
   @objc public func initSDK(appId: Swift.String, appKey: Swift.String, delegate: Any, theme: TeamCircleSDK.TCThemeType = .dark)
   @objc public func userLogin(userId: Swift.String, userName: Swift.String, avatarUrl: Swift.String = "", userEmail: Swift.String = "", userBio: Swift.String = "")
   @objc public func userLogout()
-  @objc public func deleleAccount(complete: @escaping (((any Swift.Error)?) -> Swift.Void))
+  @objc public func deleteAccount(complete: @escaping (((any Swift.Error)?) -> Swift.Void))
   @objc public func initCircle(complete: ((TeamCircleSDK.TCCircleNavController?, (any Swift.Error)?) -> Swift.Void))
   @objc public func initStoreBtn(frame: CoreFoundation.CGRect, complete: ((TeamCircleSDK.TCStoreBtn?, (any Swift.Error)?) -> Swift.Void))
   @objc public func toStoreVCtrl(nav: UIKit.UINavigationController, complete: ((TeamCircleSDK.TCStoreVCtrl?, (any Swift.Error)?) -> Swift.Void))

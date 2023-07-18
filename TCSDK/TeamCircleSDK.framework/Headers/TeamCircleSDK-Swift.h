@@ -561,8 +561,8 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) TCManager * 
 - (void)userLoginWithUserId:(NSString * _Nonnull)userId userName:(NSString * _Nonnull)userName avatarUrl:(NSString * _Nonnull)avatarUrl userEmail:(NSString * _Nonnull)userEmail userBio:(NSString * _Nonnull)userBio;
 /// User logout
 - (void)userLogout;
-/// Delele account
-- (void)deleleAccountWithComplete:(void (^ _Nonnull)(NSError * _Nullable))complete;
+/// Delete account
+- (void)deleteAccountWithComplete:(void (^ _Nonnull)(NSError * _Nullable))complete;
 /// Create a circle navigation controller
 /// \param complete 
 ///
