@@ -122,8 +122,8 @@ typedef NS_ENUM(NSUInteger, EMMessageStatisticsType) {
  *
  *  @param startTimestamp  起始时间戳，单位为毫秒。
  *  @param endTimestamp 结束时间戳，单位为毫秒。
- *  @param EMMessageStatisticsDirection  消息方向。
- *  @param EMMessageStatisticsType  消息类型。
+ *  @param direction  消息方向。
+ *  @param type  消息类型。
  *  @return 返回符合条件的消息条数。调用失败时返回 `0`。
  *
  *  \~english
@@ -131,8 +131,8 @@ typedef NS_ENUM(NSUInteger, EMMessageStatisticsType) {
  * 
  *  @param startTimestamp  The starting timestamp for statistics. The unit is millisecond.
  *  @param endTimestamp The ending timestamp for statistics. The unit is millisecond.
- *  @param EMMessageStatisticsDirection  The message direction.
- *  @param EMMessageStatisticsType  The message type.
+ *  @param direction  The message direction.
+ *  @param type  The message type.
  *  @return The count of messages that meet the statistical conditions. `0` is returned in the case of a call failure.
  */
 - (NSInteger)getMessageCountWithStart:(NSInteger)startTimestamp
@@ -149,8 +149,8 @@ typedef NS_ENUM(NSUInteger, EMMessageStatisticsType) {
  *
  *  @param startTimestamp  起始时间戳，单位为毫秒。
  *  @param endTimestamp 结束时间戳，单位为毫秒。
- *  @param EMMessageStatisticsDirection  消息方向。
- *  @param EMMessageStatisticsType  消息类型。
+ *  @param direction  消息方向。
+ *  @param type  消息类型。
  *  @return 返回符合条件的消息的总流量，单位字节。调用失败时返回 `0`。
  *
  *  \~english
@@ -160,8 +160,8 @@ typedef NS_ENUM(NSUInteger, EMMessageStatisticsType) {
  * 
  *  @param startTimestamp  The starting timestamp for statistics. The unit is millisecond.
  *  @param endTimestamp The ending timestamp for statistics. The unit is millisecond.
- *  @param EMMessageStatisticsDirection  The message direction.
- *  @param EMMessageStatisticsType  The message type.
+ *  @param direction  The message direction.
+ *  @param type  The message type.
  *  @return The total traffic amount of messages that meet the statistical conditions. `0` is returned in the case of a call failure.
  */
 - (NSInteger)getMessageStatisticsSizeWithStart:(NSInteger)startTimestamp

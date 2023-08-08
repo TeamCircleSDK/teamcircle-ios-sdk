@@ -34,14 +34,15 @@
 
 /**
  *  \~chinese
- *  拉取漫游消息方向枚举类型。
+ *  漫游消息的拉取方向枚举类型。
  *
  *  \~english
- *  The message search direction type.
+ *  The directions in which historical messages are retrieved from the server.
  */
 typedef NS_ENUM(NSUInteger, EMMessageFetchHistoryDirection) {
-    EMMessageFetchHistoryDirectionUp  = 0,    /** \~chinese 向上搜索类型。  \~english The  older messages type.*/
-    EMMessageFetchHistoryDirectionDown        /** \~chinese 向下搜索类型。 \~english The  newer messages type.*/
+    EMMessageFetchHistoryDirectionUp  = 0,    /** \~chinese SDK 按消息中的时间戳的逆序查询。  \~english The SDK retrieves messages in the descending order of the timestamp included in them.*/
+    EMMessageFetchHistoryDirectionDown        /** \~chinese SDK 按消息中的时间戳的正序查询。 \~english The SDK retrieves messages in the ascending order of the timestamp included in them. 
+ **/
 };
 
 
@@ -50,10 +51,12 @@ typedef NS_ENUM(NSUInteger, EMMessageFetchHistoryDirection) {
 /**
  *  \~chinese
  *  聊天相关操作代理协议。
+ * 
  *  消息都是从本地数据库中加载，不是从服务端加载。
  *
  *  \~english
- *  This protocol defines the operations of chat.
+ *  This protocol that defines the operations of chat.
+ * 
  *  The current messages are loaded from the local database, not from the server.
  */
 @protocol IEMChatManager <NSObject>
@@ -67,7 +70,7 @@ typedef NS_ENUM(NSUInteger, EMMessageFetchHistoryDirection) {
  *  添加回调代理。
  *
  *  @param aDelegate  实现代理协议的对象。
- *  @param aQueue     执行代理方法的队列。
+ *  @param aQueue     执行代理方法的队列。若在主线程上运行 app，将该参数设置为空。
  *
  *  \~english
  *  Adds a delegate.
@@ -95,12 +98,12 @@ typedef NS_ENUM(NSUInteger, EMMessageFetchHistoryDirection) {
 
 /**
  *  \~chinese
- *  获取所有会话，如果缓存中不存在会从本地数据库中加载。
+ *  获取所有会话，如果内存中不存在会从本地数据库中加载。
  *
  *  @result 会话列表。
  *
  *  \~english
- *  Gets all conversations in the local database. The SDK loads the conversations from the cache first. If no conversation is in the cache, the SDK loads from the local database.
+ *  Gets all conversations in the local database. The SDK loads the conversations from the memory first. If no conversation is in the memory, the SDK loads from the local database.
  *
  *  @result The conversation NSArray.
  */
@@ -121,6 +124,25 @@ typedef NS_ENUM(NSUInteger, EMMessageFetchHistoryDirection) {
 
 /**
  *  \~chinese
+ *  从服务器分页获取所有会话。
+ *
+ *  @param pageNumber 当前页码，从1开始
+ *  @param pageSize 每页的会话个数
+ *  @param aCompletionBlock     该方法完成调用的回调。如果该方法调用失败，会包含调用失败的原因。
+ *
+ *  \~english
+ *  Gets all conversations from the server by page.
+ *
+ *  @param pageNumber The current page number, starting from 1.
+ *  @param pageSize The number of conversations on each page
+ *  @param aCompletionBlock     The completion block, which contains the error message if the method fails.
+ */
+- (void)getConversationsFromServerByPage:(NSUInteger)pageNumber
+                                pageSize:(NSUInteger)pageSize
+                              completion:(void (^_Nullable)(NSArray<EMConversation *> * _Nullable aConversations, EMError * _Nullable aError))aCompletionBlock;
+
+/**
+ *  \~chinese
  *  从本地数据库中获取一个已存在的会话。
  *
  *  @param aConversationId  会话 ID。
@@ -128,9 +150,9 @@ typedef NS_ENUM(NSUInteger, EMMessageFetchHistoryDirection) {
  *  @result 会话对象。
  *
  *  \~english
- *  Gets a conversation from the local database.
+ *  Gets a conversation from the local database. 
  *
- *  @param aConversationId  The conversation ID.
+ *  @param aConversationId  The conversation ID.
  *
  *  @result The conversation object.
  */
@@ -142,7 +164,7 @@ typedef NS_ENUM(NSUInteger, EMMessageFetchHistoryDirection) {
  *
  *  @param aConversationId  会话 ID。
  *  @param aType            会话类型。
- *  @param aIfCreate        如果不存在是否创建。
+ *  @param aIfCreate        若该会话不存在是否创建。
  *
  *  @result 会话对象。
  *
@@ -150,10 +172,10 @@ typedef NS_ENUM(NSUInteger, EMMessageFetchHistoryDirection) {
  *  Gets a conversation from the local database.
  *
  *  @param aConversationId  The conversation ID.
- *  @param aType            The conversation type (Must be specified).
+ *  @param aType            The conversation type. 
  *  @param aIfCreate        Whether to create the conversation if it does not exist.
  *
- *  @result The conversation.
+ *  @result The conversation object.
  */
 - (EMConversation *_Nullable)getConversation:(NSString *_Nonnull)aConversationId
                                type:(EMConversationType)aType
@@ -165,18 +187,22 @@ typedef NS_ENUM(NSUInteger, EMMessageFetchHistoryDirection) {
  *
  *  @param aConversationId  会话 ID。
  *  @param aType            会话类型。
- *  @param aIfCreate        如果不存在是否创建。
- *  @param isThread 是否是threadChat类型的会话
+ *  @param aIfCreate        若该会话不存在是否创建。
+ *  @param isThread         是否是子区会话，即是否为 `threadChat` 类型的会话。
+ * - `YES`: 是；
+ * - `NO`: 否。
  *  @result 会话对象。
  *
  *  \~english
  *  Gets a conversation from the local database.
  *
  *  @param aConversationId  The conversation ID.
- *  @param aType            The conversation type (Must be specified).
+ *  @param aType            The conversation type.
  *  @param aIfCreate        Whether to create the conversation if it does not exist.
- *  @param isThread  Whether it is a threadChat type of session
- *  @result The conversation.
+ *  @param isThread         Whether it is thread conversation. That is, whether the conversation is of the `threadChat` type.
+ *  - `YES`: Yes;
+ *  - `NO`: No.
+ *  @result The conversation object. 
  */
 - (EMConversation *_Nullable)getConversation:(NSString *_Nonnull)aConversationId
                                type:(EMConversationType)aType
@@ -194,10 +220,11 @@ typedef NS_ENUM(NSUInteger, EMMessageFetchHistoryDirection) {
  *
  *  \~english
  *  Deletes a conversation from the local database.
+ * 
  *  @param aConversationId      The conversation ID.
  *  @param aIsDeleteMessages    Whether to delete the messages in the conversation.
- *  - `Yes`: Yes;
- *  - `No`: No.
+ *  - `YES`: Yes;
+ *  - `NO`: No.
  *  @param aCompletionBlock     The completion block, which contains the error message if the method call fails.
  *
  */
@@ -222,8 +249,8 @@ typedef NS_ENUM(NSUInteger, EMMessageFetchHistoryDirection) {
   *  @param aConversationId      The conversation ID.
   *  @param aConversationType    The conversation type.
   *  @param aIsDeleteMessages    Whether to delete the related messages with the conversation.
-  *                          - `Yes`: Yes;
-  *                          - `No`: No.
+  *                          - `YES`: Yes;
+  *                          - `NO`: No.
   *  @param aCompletionBlock     The completion block, which contains the error message if the method call fails.
   *
   */
@@ -246,9 +273,9 @@ typedef NS_ENUM(NSUInteger, EMMessageFetchHistoryDirection) {
  *  Deletes multiple conversations.
  *
  *  @param aConversations       The conversation list.
- *  @param aIsDeleteMessages    Whether to delete the messages.
- *  - `Yes`: Yes;
- *  - `No`: No.
+ *  @param aIsDeleteMessages    Whether to delete the messages with the conversations.
+ *  - `YES`: Yes;
+ *  - `NO`: No.
  *  @param aCompletionBlock     The completion block, which contains the error message if the method fails.
  *
  */
@@ -303,7 +330,9 @@ typedef NS_ENUM(NSUInteger, EMMessageFetchHistoryDirection) {
  *  @result 附件路径。
  *
  *  \~english
- *  Gets the local path of message attachments in a conversation. Delete the conversation will also delete the files under the file path.
+ *  Gets the local path of message attachments in a conversation. 
+ * 
+ *  When a conversation is deleted, the message attachments in the conversation will also be deleted.
  *
  *  @param aConversationId  The conversation ID.
  *
@@ -321,7 +350,7 @@ typedef NS_ENUM(NSUInteger, EMMessageFetchHistoryDirection) {
  *  \~english
  *  Imports multiple messages to the local database.
  *
- *  @param aMessages            The message NSArray.
+ *  @param aMessages            The message list.
  *  @param aCompletionBlock     The completion block, which contains the error message if the method fails.
  *
  */
@@ -330,13 +359,19 @@ typedef NS_ENUM(NSUInteger, EMMessageFetchHistoryDirection) {
 
 /**
  *  \~chinese
- *  更新消息到本地数据库，会话中最新的消息会先更新，消息 ID 不会更新。
+ *  更新消息到本地数据库。
+ * 
+ *  该方法会同时更新本地内存和数据库中的消息，消息 ID 不会更新。
  *
  *  @param aMessage         消息。
  *  @param aCompletionBlock 该方法完成调用的回调。如果该方法调用失败，会包含调用失败的原因。
  *
  *  \~english
- *  Updates a message in the local database. Latest Message of the conversation and other properties will be updated accordingly. MessageId of the message cannot be updated.
+ *  Updates a message in the local database. 
+ * 
+ *  This method updates the message in both the memory and the local database at the same time.
+ * 
+ *  The message ID cannot be updated.
  *
  *  @param aMessage             The message instance.
  *  @param aCompletionBlock     The completion block, which contains the error message if the method fails.
@@ -352,7 +387,7 @@ typedef NS_ENUM(NSUInteger, EMMessageFetchHistoryDirection) {
  *  异步方法。
  *
  *  @param aMessage             消息 ID。
- *  @param aUsername            已读接收方。
+ *  @param aUsername            已读回执的接收方。
  *  @param aCompletionBlock     该方法完成调用的回调。如果该方法调用失败，会包含调用失败的原因。
  *
  *  \~english
@@ -361,7 +396,7 @@ typedef NS_ENUM(NSUInteger, EMMessageFetchHistoryDirection) {
  *  This is an asynchronous method.
  *
  *  @param aMessageId           The message ID.
- *  @param aUsername            The receiver of the read receipt.
+ *  @param aUsername            The user ID of the recipient of the read receipt.
  *  @param aCompletionBlock     The completion block, which contains the error message if the method fails.
  *
  */
@@ -387,7 +422,7 @@ typedef NS_ENUM(NSUInteger, EMMessageFetchHistoryDirection) {
  *  This is an asynchronous method.
  *
  *  @param aMessageId           The message ID.
- *  @param aGroupId             The group receiver ID.
+ *  @param aGroupId             The group ID.
  *  @param aContent             The message content.
  *  @param aCompletionBlock     The completion block, which contains the error message if the method fails.
  *
@@ -404,9 +439,10 @@ typedef NS_ENUM(NSUInteger, EMMessageFetchHistoryDirection) {
  *  该方法仅适用于单聊会话。
  *  
  *  发送会话已读回执会通知服务器将指定的会话未读消息数置为 0。调用该方法后对方会收到 onConversationRead 回调。
+ * 
  *  对话方（包含多端多设备）将会在回调方法 EMChatManagerDelegate onConversationRead(String, String) 中接收到回调。
  *
- *  为了减少调用次数，我们建议在进入聊天页面有大量未读消息时调用该方法，在聊天过程中调用 sendMessageReadAck 方法发送消息已读回执。
+ *  为了减少调用次数，我们建议在进入聊天页面有大量未读消息时调用该方法，在聊天过程中调用 `sendMessageReadAck` 方法发送消息已读回执。
  *  
  *
  *  异步方法。
@@ -419,9 +455,9 @@ typedef NS_ENUM(NSUInteger, EMMessageFetchHistoryDirection) {
  * 
  *  This method applies to one-to-one chats only.
  * 
- *  This method call notifies the server to set the number of unread messages of the specified conversation as 0, and triggers the onConversationRead callback on the receiver's client.
+ *  This method call notifies the server to set the number of unread messages of the specified conversation as 0, and triggers the onConversationRead callback on the recipient's client.
  *
- *  To reduce the number of method calls, we recommend that you call this method when the user enters a conversation with many unread messages, and call sendMessageReadAck during a conversation to send the message read receipts.
+ *  To reduce the number of method calls, we recommend that you call this method when the user enters a conversation with many unread messages, and call `sendMessageReadAck` during a conversation to send the message read receipts.
  * 
  *  This is an asynchronous method.
  * 
@@ -461,7 +497,7 @@ typedef NS_ENUM(NSUInteger, EMMessageFetchHistoryDirection) {
  *  异步方法。
  *
  *  @param aMessage         消息。
- *  @param aProgressBlock   附件上传进度回调。如果该方法调用失败，会包含调用失败的原因。
+ *  @param aProgressBlock   附件上传进度回调 block。进度值范围为 [0,100]。
  *  @param aCompletionBlock 该方法完成调用的回调。如果该方法调用失败，会包含调用失败的原因。
  *
  *  \~english
@@ -470,7 +506,7 @@ typedef NS_ENUM(NSUInteger, EMMessageFetchHistoryDirection) {
  *  This is an asynchronous method.
  *
  *  @param aMessage             The message instance.
- *  @param aProgressBlock       The block of attachment upload progress in percentage, 0~100.
+ *  @param aProgressBlock       The callback block of attachment upload progress. The progress value range is [0,100].
  *  @param aCompletionBlock     The completion block, which contains the error message if the method fails.
  */
 - (void)sendMessage:(EMChatMessage *_Nonnull)aMessage
@@ -482,14 +518,14 @@ typedef NS_ENUM(NSUInteger, EMMessageFetchHistoryDirection) {
  *  重新发送消息。
  *
  *  @param aMessage         消息对象。
- *  @param aProgressBlock   附件上传进度回调 block。
+ *  @param aProgressBlock   附件上传进度回调 block。进度值范围为 [0,100]。
  *  @param aCompletionBlock 该方法完成调用的回调。如果该方法调用失败，会包含调用失败的原因。
  *
  *  \~english
  *  Resends a message.
  *
  *  @param aMessage             The message object.
- *  @param aProgressBlock       The callback block of attachment upload progress.
+ *  @param aProgressBlock       The callback block of attachment upload progress. The progress value range is [0,100].
  *  @param aCompletionBlock     The completion block, which contains the error message if the method fails.
  */
 - (void)resendMessage:(EMChatMessage *_Nonnull)aMessage
@@ -503,7 +539,7 @@ typedef NS_ENUM(NSUInteger, EMMessageFetchHistoryDirection) {
  *  SDK 会自动下载缩略图。如果自动下载失败，你可以调用该方法下载缩略图。
  *
  *  @param aMessage            消息对象。
- *  @param aProgressBlock      附件下载进度回调 block。
+ *  @param aProgressBlock      附件下载进度回调 block。进度值的范围为 [0,100]。
  *  @param aCompletionBlock    该方法完成调用的回调。如果该方法调用失败，会包含调用失败的原因。
  *
  *  \~english
@@ -512,7 +548,7 @@ typedef NS_ENUM(NSUInteger, EMMessageFetchHistoryDirection) {
  *  The SDK automatically downloads the thumbnail. If the auto-download fails, you can call this method to manually download the thumbnail.
  *
  *  @param aMessage             The message object.
- *  @param aProgressBlock       The callback block of attachment download progress.
+ *  @param aProgressBlock       The callback block of attachment download progress. The progress value range is [0,100].
  *  @param aCompletionBlock     The completion block, which contains the error message if the method fails.
  */
 - (void)downloadMessageThumbnail:(EMChatMessage *_Nonnull)aMessage
@@ -528,18 +564,18 @@ typedef NS_ENUM(NSUInteger, EMMessageFetchHistoryDirection) {
  *  异步方法。
  *
  *  @param aMessage            消息。
- *  @param aProgressBlock      附件下载进度回调 block。
+ *  @param aProgressBlock      附件下载进度回调 block。进度值的范围为 [0,100]。
  *  @param aCompletionBlock    该方法完成调用的回调。如果该方法调用失败，会包含调用失败的原因。
  *
  *  \~english
  *  Downloads message attachment (voice, video, image or file). 
  *  
- *  SDK handles attachment downloading automatically. If automatic download failed, you can download attachment manually.
+ *  The SDK automatically downloads voice messages. If the automatic download fails, you can download voice messages manually.
  *
  *  This is an asynchronous method.
  * 
  *  @param aMessage             The message object.
- *  @param aProgressBlock       The callback block of attachment download progress.
+ *  @param aProgressBlock       The callback block of attachment download progress. The progress value range is [0,100].
  *  @param aCompletionBlock     The completion block, which contains the error message if the method fails.
  */
 - (void)downloadMessageAttachment:(EMChatMessage *_Nonnull)aMessage
@@ -552,27 +588,27 @@ typedef NS_ENUM(NSUInteger, EMMessageFetchHistoryDirection) {
  *  \~chinese
  *  从服务器获取指定会话的消息。
  *
- *  @param  aConversationId     要获取消息的 Conversation ID。
- *  @param  aConversationType   要获取消息的 Conversation type。
- *  @param  aStartMessageId     起始消息的 ID。
- *  @param  direction      EMMessageFetchHistoryDirection 根据某条消息向上或者向下
- *  @param  aPageSize           获取消息条数。
+ *  @param  aConversationId     会话 ID。
+ *  @param  aConversationType   会话类型。
+ *  @param  aStartMessageId     查询的起始消息 ID。若该参数为空，SDK 从最新一条消息开始获取。
+ *  @param  direction           消息搜索方向。详见 {@link EMMessageFetchHistoryDirection}。
+ *  @param  aPageSize           每页期望获取的消息条数。
  *  @param  pError              错误信息。
  *
  *  @result     获取的消息内容列表。
  *
  *
  *  \~english
- *  Fetches conversation messages from server.
+ *  Gets messages in a conversation from the server.
  
- *  @param aConversationId      The conversation id which select to fetch message.
- *  @param aConversationType    The conversation type which select to fetch message.
- *  @param aStartMessageId      The start message id, if empty, start from the server‘s last message.
- *  @param direction      EMMessageFetchHistoryDirection up or down
- *  @param aPageSize            The page size.
+ *  @param aConversationId      The conversation ID.
+ *  @param aConversationType    The conversation type.
+ *  @param aStartMessageId      The starting message ID for query. If you set this parameter as `nil` or "", the SDK gets messages from the latest one.
+ *  @param direction            The message search direction. See {@link EMMessageFetchHistoryDirection}.                     
+ *  @param aPageSize            The number of messages that you expect to get on each page.
  *  @param pError               The error information if the method fails: Error.
  *
- *  @result    The messages list.
+ *  @result    The list of retrieved messages.
  */
 - (EMCursorResult<EMChatMessage*> *_Nullable)fetchHistoryMessagesFromServer:(NSString *_Nonnull)aConversationId
                                   conversationType:(EMConversationType)aConversationType
@@ -584,25 +620,25 @@ typedef NS_ENUM(NSUInteger, EMMessageFetchHistoryDirection) {
  *  \~chinese
  *  从服务器获取指定会话的消息。
  *
- *  @param  aConversationId     要获取消息的 Conversation ID。
- *  @param  aConversationType   要获取消息的 Conversation type。
- *  @param  aStartMessageId     起始消息的 ID。
- *  @param  aPageSize           获取消息条数。
+ *  @param  aConversationId     会话 ID。
+ *  @param  aConversationType   会话类型。
+ *  @param  aStartMessageId     查询的起始消息 ID。若该参数为空，SDK 从最新一条消息开始获取。
+ *  @param  aPageSize           每页期望获取的消息条数。
  *  @param  pError              错误信息。
  *
  *  @result     获取的消息内容列表。
  *
  *
  *  \~english
- *  Fetches conversation messages from server.
+ *  Gets messages in a conversation from the server.
  
- *  @param aConversationId      The conversation id which select to fetch message.
- *  @param aConversationType    The conversation type which select to fetch message.
- *  @param aStartMessageId      The start message id, if empty, start from the server‘s last message.
- *  @param aPageSize            The page size.
+ *  @param aConversationId      The conversation ID.
+ *  @param aConversationType    The conversation type.
+ *  @param aStartMessageId      The starting message ID for query. If you set this parameter as `nil` or "", the SDK gets messages from the latest one.
+ *  @param aPageSize            The number of messages that you expect to get on each page. 
  *  @param pError               The error information if the method fails: Error.
  *
- *  @result    The messages list.
+ *  @result    The list of retrieved messages.
  */
 - (EMCursorResult<EMChatMessage*> *_Nullable)fetchHistoryMessagesFromServer:(NSString *_Nonnull)aConversationId
                                   conversationType:(EMConversationType)aConversationType
@@ -617,23 +653,23 @@ typedef NS_ENUM(NSUInteger, EMMessageFetchHistoryDirection) {
  *
  *  异步方法。
  *
- *  @param  aConversationId     要获取消息的 Conversation ID。
- *  @param  aConversationType   要获取消息的 Conversation type。
- *  @param  aStartMessageId     起始消息的 ID。
- *  @param  aPageSize           获取消息条数。
- *  @param  aCompletionBlock    获取消息结束的 callback。
+ *  @param  aConversationId     会话 ID。
+ *  @param  aConversationType   会话类型。
+ *  @param  aStartMessageId     查询的起始消息 ID。
+ *  @param  aPageSize           每页期望获取的消息条数。
+ *  @param  aCompletionBlock    该方法完成调用的回调。
  *
  *
  *  \~english
- *  Fetches conversation messages from server.
+ *  Gets messages in a conversation from the server.
  * 
  *  This is an asynchronous method.
  * 
- *  @param aConversationId      The conversation id which select to fetch message.
- *  @param aConversationType    The conversation type which select to fetch message.
- *  @param aStartMessageId      The start message id, if empty, start from the server last message.
- *  @param aPageSize            The page size.
- *  @param aCompletionBlock     The callback block of fetch complete, which contains the error message if the method fails.
+ *  @param aConversationId      The conversation ID.
+ *  @param aConversationType    The conversation type.
+ *  @param aStartMessageId      The starting message ID for query. If you set this parameter as `nil` or "", the SDK gets messages from the latest one.
+ *  @param aPageSize            The number of messages that you expect to get on each page.
+ *  @param aCompletionBlock     The completion block, which contains the error message if the method fails.
  */
 - (void)asyncFetchHistoryMessagesFromServer:(NSString *_Nonnull)aConversationId
                            conversationType:(EMConversationType)aConversationType
@@ -646,12 +682,12 @@ typedef NS_ENUM(NSUInteger, EMMessageFetchHistoryDirection) {
  *
  *  异步方法。
  *
- *  @param  aConversationId     要获取消息的 Conversation ID。
- *  @param  aConversationType   要获取消息的 Conversation type。
- *  @param  aStartMessageId     起始消息的 ID。
- *  @param direction      EMMessageFetchHistoryDirection 向上或者向下
- *  @param  aPageSize           获取消息条数。（单次限制最大50条）
- *  @param  aCompletionBlock    获取消息结束的 callback。
+ *  @param  aConversationId     会话 ID。
+ *  @param  aConversationType   会话类型。
+ *  @param  aStartMessageId     查询的起始消息 ID。若该参数为空，SDK 从最新一条消息开始获取。
+ *  @param direction            消息搜索方向。详见 {@link EMMessageFetchHistoryDirection}。
+ *  @param  aPageSize           每页期望获取的消息条数。取值范围为 [1,50]。
+ *  @param  aCompletionBlock    该方法完成调用的回调。
  *
  *
  *  \~english
@@ -659,12 +695,12 @@ typedef NS_ENUM(NSUInteger, EMMessageFetchHistoryDirection) {
  *
  *  This is an asynchronous method.
  *
- *  @param aConversationId      The conversation id which select to fetch message.
- *  @param aConversationType    The conversation type which select to fetch message.
- *  @param aStartMessageId      The start message id, if empty, start from the server last message.
- *  @param direction      EMMessageFetchHistoryDirection up or down
- *  @param aPageSize            The page size. limit 50
- *  @param aCompletionBlock     The callback block of fetch complete, which contains the error message if the method fails.
+ *  @param aConversationId      The conversation ID.
+ *  @param aConversationType    The conversation type.
+ *  @param aStartMessageId      The starting message ID for query. If you set this parameter as `nil` or "", the SDK gets messages from the latest one.
+ *  @param direction            The message search direction. See {@link EMMessageFetchHistoryDirection}.
+ *  @param aPageSize            The number of messages that you expect to get on each page. The value range is [1,50].
+ *  @param aCompletionBlock     The callback block, which contains the error message if the method fails.
  */
 - (void)asyncFetchHistoryMessagesFromServer:(NSString *_Nonnull)aConversationId
                            conversationType:(EMConversationType)aConversationType
@@ -678,27 +714,31 @@ typedef NS_ENUM(NSUInteger, EMMessageFetchHistoryDirection) {
 
 /**
  *  \~chinese
- *  从服务器获取指定群消息的已读回执，即指定的群消息有多少人已读。
+ *  从服务器获取指定群消息的已读回执。
+ * 
+ * 可调用该方法了解有多少群成员阅读了指定的群消息。
  *
  *  异步方法。
  *
- *  @param  aMessageId           要获取的消息 ID。
- *  @param  aGroupId             要获取回执对应的群 ID。
- *  @param  aGroupAckId          要获取的群回执 ID。
- *  @param  aPageSize            获取消息条数。
+ *  @param  aMessageId           要获取已读回执的消息 ID。
+ *  @param  aGroupId             群组 ID。
+ *  @param  aGroupAckId          群消息已读回执 ID。
+ *  @param  aPageSize            每页期望获取的回执条数。
  *  @param  aCompletionBlock     该方法完成调用的回调。如果该方法调用失败，会包含调用失败的原因。
  *
  *
  *  \~english
- *  Fetches the read back receipt of specified group messages from the server.
+ *  Gets the read receipts of a specified group message from the server.
+ * 
+ *  By getting the read receipts of a group message, you can see how many group members have read this message.
  * 
  *  This is an asynchronous method.
  * 
- *  @param  aMessageId           The message ID which select to fetch.
- *  @param  aGroupId             The group ID which select to fetch.
- *  @param  aGroupAckId          The group ack ID which select to fetch.
- *  @param  aPageSize            The page size.
- *  @param  aCompletionBlock     The callback block of fetch complete, which contains the error message if the method fails.
+ *  @param  aMessageId           The message ID.
+ *  @param  aGroupId             The group ID.
+ *  @param  aGroupAckId          The ID of the read receipt to get from the server.
+ *  @param  aPageSize            The number of read receipts that you expect to get on each page.
+ *  @param  aCompletionBlock     The completion block, which contains the error message if the method fails.
  */
 - (void)asyncFetchGroupMessageAcksFromServer:(NSString *_Nonnull)aMessageId
                                      groupId:(NSString *_Nonnull)aGroupId
@@ -708,23 +748,25 @@ typedef NS_ENUM(NSUInteger, EMMessageFetchHistoryDirection) {
 
 /**
  *  \~chinese
- *  举报违规消息
+ *  举报违规消息。
  *
- *  异步方法
+ *  异步方法。
  *
- *  @param  aMessageId           违规消息id
- *  @param  aTag                         举报类型
- *  @param  aReason                  举报原因
- *  @param  aCompletion         执行上报结果
+ *  @param  aMessageId           非法消息的 ID。
+ *  @param  aTag                 非法消息标签，如涉政或涉恐。
+ *  @param  aReason              举报原因。
+ *  @param  aCompletion          该方法完成调用的回调。如果该方法调用失败，会包含调用失败的原因。
  *
  *
  *  \~english
- *  Report violation message
+ *  Reports an inappropriate message.
+ * 
+ *  This is an asynchronous method.
  
- *  @param  aMessageId              Violation Message ID
- *  @param  aTag                            Report tag
- *  @param  aReason                     Report reasons
- *  @param  aCompletion            The callback block of fetch complete
+ *  @param  aMessageId              The ID of the inappropriate message.
+ *  @param  aTag                    The message content tag. For example, the message is related to pornography or terrorism.
+ *  @param  aReason                 The reason for reporting the message.
+ *  @param  aCompletion             The completion block, which contains the error message if the method fails.
  */
 - (void)reportMessageWithId:(NSString *_Nonnull )aMessageId
                         tag:(NSString *_Nonnull)aTag
@@ -733,17 +775,17 @@ typedef NS_ENUM(NSUInteger, EMMessageFetchHistoryDirection) {
 
 /*!
  *  \~chinese
- *  删除某个时间点之前的消息。
+ *  删除指定时间戳之前的本地历史消息。
  *
  *  异步方法。
  *
- *  @param aTimestamp            指定的时间点，Unix 时间戳，单位为毫秒。
+ *  @param aTimestamp            指定的消息时间戳，单位为毫秒。时间戳之前的本地消息会被删除。
  *  @param aCompletion           该方法完成调用的回调。如果该方法调用失败，会包含调用失败的原因。
  *
  *  \~english
- *  Deletes messages with timestamp that is before the specified one.
+ *  Deletes local historical messages with a Unix timestamp before a specified one.
  *
- *  @param aTimestamp            The specified Unix timestamp(miliseconds).
+ *  @param aTimestamp            The specified Unix timestamp in miliseconds. Messages with a Unix timestamp before a specified one will be deleted.
  *  @param aCompletion           The completion block, which contains the error message if the method fails.
  *
  */
@@ -755,31 +797,34 @@ typedef NS_ENUM(NSUInteger, EMMessageFetchHistoryDirection) {
 /**
  *  \~chinese
  *  从会话中删除消息（包括本地存储和服务器存储）。
- *  @param conversation 会话对象EMConversation
- *  @param messageIds   要删除消息id字符串数组。
- *  @param completion   接口回调成功或者失败
+ * 
+ *  @param conversation 会话对象 EMConversation
+ *  @param messageIds   要删除消息 ID 字符串数组。
+ *  @param completion   该方法完成调用的回调。如果该方法调用失败，会包含调用失败的原因。
  *
  *  \~english
- *  Delete messages from the session (both local storage and server storage).
- *  @param conversation EMConversation object.
- *  @param messageIds   Array<String> that you want delete form current conversation.
- *  @param completion   Callback result from server.
+ *  Removes messages in a conversation (from both local storage and the server).
+ * 
+ *  @param conversation The EMConversation object.
+ *  @param messageIds   A string array of message IDs to delete.
+ *  @param completion   The completion block, which contains the error message if the method fails.
  *
  */
 - (void)removeMessagesFromServerWithConversation:(EMConversation *_Nonnull)conversation messageIds:(NSArray <__kindof NSString*>*_Nonnull)messageIds completion:(void (^ _Nullable)(EMError * _Nullable aError))aCompletionBlock;
 /**
  *  \~chinese
- *  从会话中删除消息（包括本地存储和服务器存储）。
- *  @param conversation 会话对象EMConversation
- *  @param beforeTimeStamp   要删除哪一条消息之前的消息时间戳。
- *  @param completion   接口回调成功或者失败
+ *  从会话中删除消息（包括本地存储和服务器）。
+ * 
+ *  @param conversation 会话对象 EMConversation。
+ *  @param beforeTimeStamp   指定的时间戳，单位为毫秒。该时间戳之前的消息会被删除。
+ *  @param completion    该方法完成调用的回调。如果该方法调用失败，会包含调用失败的原因。
  *
  *  \~english
- *  Delete messages from the session (both local storage and server storage).
+ *  Removes messages in a conversation (from both local storage and the server).
  *
- *  @param conversation EMConversation object.
- *  @param messageIds   The message timestamp before which message to delete form current conversation.
- *  @param completion   Callback result from server.
+ *  @param conversation The EMConversation object.
+ *  @param messageIds   The specified Unix timestamp in miliseconds. Messages with a timestamp before the specified one will be removed from the conversation.
+ *  @param completion   The completion block, which contains the error message if the method fails.
  *
  */
 - (void)removeMessagesFromServerWithConversation:(EMConversation *_Nonnull)conversation timeStamp:(NSTimeInterval)beforeTimeStamp completion:(void (^ _Nullable)(EMError * _Nullable aError))aCompletionBlock;
@@ -790,14 +835,14 @@ typedef NS_ENUM(NSUInteger, EMMessageFetchHistoryDirection) {
  *  翻译消息。
  *
  *  @param aMessage         消息对象。
- *  @param aLanguages       目标语言.
+ *  @param aLanguages       目标语言代码列表。
  *  @param aCompletionBlock 该方法完成调用的回调。如果该方法调用失败，会包含调用失败的原因。
  *
  *  \~english
- *  Translate a message.
+ *  Translates a message.
  *
  *  @param aMessage             The message object.
- *  @param aLanguages           The target languages.
+ *  @param aLanguages           The list of target language codes.
  *  @param aCompletionBlock     The completion block, which contains the error message if the method fails.
  */
 - (void)translateMessage:(EMChatMessage * _Nonnull)aMessage
@@ -807,11 +852,12 @@ typedef NS_ENUM(NSUInteger, EMMessageFetchHistoryDirection) {
 /*!
  *  \~chinese
  *  获取翻译服务支持的语言。
+ * 
  *  @param aCompletionBlock 该方法完成调用的回调。如果该方法调用失败，会包含调用失败的原因。
  *
  *  \~english
  *
- *  Gets the list of supported languages for translation.
+ *  Gets all languages supported by the translation service.
  *
  *  @param aCompletionBlock The completion block, which contains the error message if the method fails.
  */
@@ -827,30 +873,30 @@ typedef NS_ENUM(NSUInteger, EMMessageFetchHistoryDirection) {
  *
  *  @param aType            消息类型。
  *  @param aTimestamp       参考时间戳。如果该参数设置的时间戳为负数，则从最新消息向前获取。
- *  @param aCount           获取的消息条数。如果设为小于等于 0，SDK 会将该参数作 1 处理。
- *  @param aUsername        消息发送方。设为 nil 表示忽略该参数。
- *  @param aDirection       消息搜索方向，详见 {@link MessageSearchDirection}。
- *                          - `UP`：按时间逆序。
- *                          - `DOWN`：按时间顺序。
+ *  @param aCount           获取的消息条数。如果设为小于等于 0，SDK 会获取一条消息。
+ *  @param aUsername        消息发送方。设为 `nil` 表示忽略该参数。
+ *  @param aDirection       消息搜索方向。详见 {@link EMMessageSearchDirection}。
+ *                          - `UP`：按消息时间戳的逆序获取。
+ *                          - `DOWN`：按消息时间戳的顺序获取。
  *
- *  @result 消息列表。 <EMChatMessage>
+ *  @result 消息列表。返回的消息列表为数组类型，数组中元素详见 {@link EMChatMessage}。
  *
  *  \~english
  *  Loads messages with the specified keyword from the local database.
  * 
- *  This method returns messages in the sequence of the timestamp when they are received.
+ *  This method returns messages in chronological order.
  * 
  *  This is a synchronous method and blocks the current thread.
  *
  *  @param aType            The message type to load.
- *  @param aTimestamp       The reference timestamp for the messages to be loaded. If you set this parameter as a negative value, the SDK loads messages from the latest.
- *  @param aCount           The number of messages to load. If you set this parameter less than 1, it will be handled as count=1.
- *  @param aUsername        Message sender (optional). Use aUsername=nil to ignore.
- *  @param aDirection       The message search directions: {@link MessageSearchDirection}.
- *                          - `UP`: In the reverse chronological order.
- *                          - `DOWN`：In the chronological order.
+ *  @param aTimestamp       The message timestamp threshold for loading. If you set this parameter as a negative value, the SDK loads messages from the latest one.
+ *  @param aCount           The number of messages to load. If you set this parameter to a value less than 1, the SDK gets one message from the local database.
+ *  @param aUsername        The message sender. It is optional. If you set this parameter as `nil`, the SDK gets messages while ignoring this parameter.
+ *  @param aDirection       The message search direction. See {@link EMMessageSearchDirection}.
+ *                          - `UP`: The SDK retrieves messages in the descending order of the timestamp included in them.
+ *                          - `DOWN`：The SDK retrieves messages in the ascending order of the timestamp included in them. 
  *
- *  @result EMChatMessage NSArray.
+ *  @result The list of retrieved messages. The message list is of the array type. For elements in the array, see {@link EMChatMessage}.
  *
  */
 - (NSArray<EMChatMessage *> * _Nullable)loadMessagesWithType:(EMMessageBodyType)aType
@@ -866,26 +912,26 @@ typedef NS_ENUM(NSUInteger, EMMessageFetchHistoryDirection) {
  *  该方法返回的消息按时间顺序排列。
  *
  *  @param aType            消息类型。
- *  @param aTimestamp       参考时间戳。如果该参数设置的时间戳为负数，则从最新消息向前获取。
- *  @param aCount           获取的消息条数。如果设为小于等于 0，SDK 会将该参数作 1 处理。
- *  @param aUsername        消息发送方。设为 nil 表示忽略该参数。
+ *  @param aTimestamp       参考时间戳。如果该参数设置的时间戳为负数，则 SDK 从最新消息开始获取。
+ *  @param aCount           获取的消息条数。如果设为小于等于 0，SDK 会获取一条消息。
+ *  @param aUsername        消息发送方。设为 `nil` 表示忽略该参数。
  *  @param aDirection       消息搜索方向，详见 {@link MessageSearchDirection}。
- *                          - `UP`：按时间逆序。
- *                          - `DOWN`：按时间顺序。
+ *                          - `UP`：按消息时间戳的逆序获取。
+ *                          - `DOWN`：按消息时间戳的顺序获取。
  *  @param aCompletionBlock 该方法完成调用的回调。如果该方法调用失败，会包含调用失败的原因。
  *
  *  \~english
  *  Loads messages with the specified keyword from the local database.
  * 
- *  This method returns messages in the sequence of the timestamp when they are received.
+ *  This method returns messages in chronological order.
  *
  *  @param aType            The message type to load.
- *  @param aTimestamp       The reference timestamp for the messages to be loaded. If you set this parameter as a negative value, the SDK loads messages from the latest.
- *  @param aCount           The number of messages to load. If you set this parameter less than 1, it will be handled as count=1
- *  @param aUsername        The user that sends the message. Setting it as nil means that the SDK ignores this parameter.
- *  @param aDirection       The message search directions: {@link MessageSearchDirection}.
- *                          - `UP`: In the reverse chronological order.
- *                          - `DOWN`：In the chronological order.
+ *  @param aTimestamp       The message timestamp threshold for loading. If you set this parameter as a negative value, the SDK loads messages from the latest one.
+ *  @param aCount           The number of messages to load. If you set this parameter to a value less than 1, the SDK gets one message from the local database.
+ *  @param aUsername        The message sender. It is optional. If you set this parameter as `nil`, the SDK ignores this parameter when retrieving messages.
+ *  @param aDirection       The message search direction. See {@link EMMessageSearchDirection}.
+ *                          - `UP`: The SDK retrieves messages in the descending order of the timestamp included in them.
+ *                          - `DOWN`：The SDK retrieves messages in the ascending order of the timestamp included in them.
  *  @param aCompletionBlock The completion block, which contains the error message if the method fails.
  *
  */
@@ -904,32 +950,32 @@ typedef NS_ENUM(NSUInteger, EMMessageFetchHistoryDirection) {
  * 
  *  同步方法，会阻塞当前线程。
  *
- *  @param aKeywords        关键词。设为 nil 表示忽略该参数。
+ *  @param aKeywords        搜索关键词。设为 `nil` 表示忽略该参数。
  *  @param aTimestamp       参考时间戳。如果该参数设置的时间戳为负数，则从最新消息向前获取。
- *  @param aCount           获取的消息条数。如果设为小于等于 0，SDK 会将该参数作 1 处理。
- *  @param aSender          消息发送方。设为 nil 表示忽略该参数。
+ *  @param aCount           获取的消息条数。如果设为小于等于 0，SDK 会获取一条消息。
+ *  @param aSender          消息发送方。设为 `nil` 表示忽略该参数。
  *  @param aDirection       消息搜索方向，详见 {@link MessageSearchDirection}。
- *                          - `UP`：按时间逆序。
- *                          - `DOWN`：按时间顺序。
+ *                          - `UP`：按消息时间戳的逆序获取。
+ *                          - `DOWN`：按消息时间戳的顺序获取。
  *
- *  @result 消息列表。
+ *  @result 消息列表。返回的消息列表为数组类型，数组中元素详见 {@link EMChatMessage}。
  *
  *  \~english
  *  Loads messages with the specified keyword from the local database.
  *
- *  This method returns messages in the sequence of the timestamp when they are received.
+ *  This method returns messages in chronological order.
  *
  *  This is a synchronous method and blocks the current thread.
  *
- *  @param aKeyword         The keyword for searching the messages. Setting it as nil means that the SDK ignores this parameter.
- *  @param aTimestamp       The reference timestamp for the messages to be loaded. If you set this parameter as a negative value, the SDK loads messages from the latest.
- *  @param aCount           The number of messages to load. If you set this parameter less than 1, it will be handled as count=1.
- *  @param aSender          The user that sends the message.
- *  @param aDirection       The message search directions: {@link MessageSearchDirection}.
- *                          - `UP`: In the reverse chronological order.
- *                          - `DOWN`：In the chronological order.
+ *  @param aKeyword         The keyword for message search. If you set this parameter as `nil`, the SDK ignores this parameter when retrieving messages.
+ *  @param aTimestamp       The message timestamp threshold for loading. If you set this parameter as a negative value, the SDK loads messages from the latest.
+ *  @param aCount           The number of messages to load. If you set this parameter less than 1, the SDK gets one message from the local database.
+ *  @param aSender          The message sender. If you set this parameter as `nil`, the SDK ignores this parameter when retrieving messages.
+ *  @param aDirection       The message search direction. See {@link EMMessageSearchDirection}.
+ *                          - `UP`: The SDK retrieves messages in the descending order of the timestamp included in them.
+ *                          - `DOWN`：The SDK retrieves messages in the ascending order of the timestamp included in them.
  *
- *  @result EMChatMessage NSArray. <EMChatMessage>
+ *  @result The list of retrieved messages. The message list is of the array type. For elements in the array, see {@link EMChatMessage}.
  *
  */
 - (NSArray<EMChatMessage *> *)loadMessagesWithKeyword:(NSString*)aKeywords
@@ -942,30 +988,29 @@ typedef NS_ENUM(NSUInteger, EMMessageFetchHistoryDirection) {
  *  \~chinese
  *  通过关键词从数据库获取消息。
  * 
- *  该方法返回的消息按时间逆序返回排列。
+ *  该方法返回的消息按时间顺序排列。
  *
- *  @param aKeywords        搜索关键词，设为 nil 表示忽略该参数。
+ *  @param aKeywords        搜索关键词，设为 `nil` 表示忽略该参数。
  *  @param aTimestamp       参考时间戳。如果该参数设置的时间戳为负数，则从最新消息向前获取。
- *  @param aCount           获取的消息条数。如果设为小于等于 0，SDK 会将该参数作 1 处理。
- *  @param aSender          消息发送方。设为 nil 表示忽略该参数。
- *  @param aDirection       消息搜索方向，详见 {@link MessageSearchDirection}。
- *                          - `UP`：按时间逆序。
- *                          - `DOWN`：按时间顺序。
+ *  @param aCount           获取的消息条数。如果设为小于等于 0，SDK 会获取一条消息。
+ *  @param aSender          消息发送方。设为 `nil` 表示忽略该参数。
+ *  @param aDirection       消息搜索方向，详见 {@link EMMessageSearchDirection}。
+ *                          - `UP`：按消息时间戳的逆序获取。
+ *                          - `DOWN`：按消息时间戳的顺序获取。
  *  @param aCompletionBlock 该方法完成调用的回调。如果该方法调用失败，会包含调用失败的原因。
  *
  *  \~english
  *  Loads messages with the specified keyword from the local database.
  * 
- *  This method returns messages in the sequence of the timestamp when they are received.
+ *  This method returns messages in chronological order.
  *
- *  @param aKeyword         The keyword for searching the messages. Setting it as nil means that the SDK ignores this parameter.
- *  @param aTimestamp       The reference timestamp for the messages to be loaded. If you set this parameter as a negative value, the SDK loads messages from the latest.
- *  @param aCount           The number of messages to load. If you set this parameter less than 1, it will be handled as count=1.
- EMMessageSearchDirectionDown: get aCount of messages after aMessageId *  ----
- *  @param aSender          The sender of the message. Setting it as nil means that the SDK ignores this parameter.
- *  @param aDirection       The message search directions: {@link MessageSearchDirection}.
- *                          - `UP`: In the reverse chronological order.
- *                          - `DOWN`：In the chronological order.
+ *  @param aKeyword         The keyword for message search. If you set this parameter as `nil`, the SDK ignores this parameter when retrieving messages.
+ *  @param aTimestamp       The message timestamp threshold for loading. If you set this parameter as a negative value, the SDK loads messages from the latest.
+ *  @param aCount           The number of messages to load. If you set this parameter less than 1, the SDK gets one message from the local database.
+ *  @param aSender          The sender of the message. If you set this parameter as `nil`, the SDK ignores this parameter when retrieving messages.
+ *  @param aDirection       The message search direction. See {@link EMMessageSearchDirection}.
+ *                          - `UP`: The SDK retrieves messages in the descending order of the timestamp included in them.
+ *                          - `DOWN`：The SDK retrieves messages in the ascending order of the timestamp included in them.
  *  @param aCompletionBlock  The completion block which contains the error code and error information if the method fails.
  */
 - (void)loadMessagesWithKeyword:(NSString*)aKeywords
@@ -1016,7 +1061,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @param messageId  消息 ID。
  *  @param groupId  群组 ID，该参数只在群聊生效。
- *  @param chatType  会话类型，仅支持单聊（ {@link EMChatTypeChat} ）和群聊（{@link EMChatTypeGroupChat}）。
+ *  @param chatType  会话类型，仅支持单聊（{@link EMChatTypeChat}）和群聊（{@link EMChatTypeGroupChat}）。
  *  @param completion  该方法完成的回调。如果有错误会包含错误信息。
  *
  *  \~english
@@ -1039,17 +1084,17 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param messageId  消息 ID。
  *  @param reaction  Reaction 内容。
  *  @param cursor  查询的开始位置。首次调用该方法可传 `nil` 或 `@""` 以 Reaction 创建时间的正序获取。
- *  @param pageSize  每页期望返回的 Reaction 数量。该值不能超过 100。
+ *  @param pageSize  每页期望返回的 Reaction 数量。取值范围为 [1,100]。
  *  @param completion  该方法完成的回调，返回 Reaction 列表和用于继续获取数据的 cursor。当 cursor 为 `nil` 时表示已获取全部数据。
  *
  *  \~english
- *  Gets the Reaction detail list of a chat group message with pagination.
+ *  Uses the pagination to get the Reaction detail list of a chat group message.
  *
  *  @param messageId  The message ID.
  *  @param reaction  The Reaction content.
- *  @param cursor  The cursor that specifies where to start to get data. If it is `nil` or `@""`, the SDK retrieves Reactions in the chronological order of their creation time.
- *  @param pageSize   The number of Reactions that you expect to get on each page. The value cannot exceed 100.
- *  @param completion  The completion block, which contains the Reaction list and the cursor for the next query. When the cursor is `nil`, all data is fetched.
+ *  @param cursor  The cursor that specifies where to start to get data. If it is set to `nil` or `@""` at the first call, the SDK retrieves Reactions in the chronological order of their creation time.
+ *  @param pageSize   The number of Reactions that you expect to get on each page. The value range is [1,100].
+ *  @param completion  The completion block, which contains the Reaction list and the cursor for the next query. When the cursor is `nil`, all data is already fetched.
  */
 - (void)getReactionDetail:(NSString *)messageId
                  reaction:(NSString *)reaction

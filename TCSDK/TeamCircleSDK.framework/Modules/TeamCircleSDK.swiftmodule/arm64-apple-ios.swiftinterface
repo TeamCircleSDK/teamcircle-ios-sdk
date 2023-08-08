@@ -264,6 +264,10 @@ extension TeamCircleSDK.TCProfileVCtrl : IGListKit.ListSingleSectionControllerDe
   @objc public func setTextFontPricedecimalFront(font: UIKit.UIFont? = nil, color: UIKit.UIColor? = nil) -> Swift.Bool
   @objc public func setIconFavorite(icon: UIKit.UIImage) -> Swift.Bool
   @objc public func setIconFavoriteSelected(icon: UIKit.UIImage) -> Swift.Bool
+  @objc public func setIconProfileMyPost(icon: UIKit.UIImage) -> Swift.Bool
+  @objc public func setIconProfileMyPostSelected(icon: UIKit.UIImage) -> Swift.Bool
+  @objc public func setIconProfileFavorite(icon: UIKit.UIImage) -> Swift.Bool
+  @objc public func setIconProfileFavoriteSelected(icon: UIKit.UIImage) -> Swift.Bool
   @objc public func setIconTag(icon: UIKit.UIImage) -> Swift.Bool
   @objc public func setIconTagSelected(icon: UIKit.UIImage) -> Swift.Bool
   @objc public func setIconLike(icon: UIKit.UIImage) -> Swift.Bool
@@ -279,6 +283,10 @@ extension TeamCircleSDK.TCProfileVCtrl : IGListKit.ListSingleSectionControllerDe
   @objc public func setIconDisableSendGif(icon: UIKit.UIImage) -> Swift.Bool
   @objc public func setIconEnableSendPhoto(icon: UIKit.UIImage) -> Swift.Bool
   @objc public func setIconDisableSendPhoto(icon: UIKit.UIImage) -> Swift.Bool
+  @objc public func setIconStore(icon: UIKit.UIImage) -> Swift.Bool
+  @objc public func setIconProfile(icon: UIKit.UIImage) -> Swift.Bool
+  @objc public func setIconChat(icon: UIKit.UIImage) -> Swift.Bool
+  @objc public func setIconMoreOperation(icon: UIKit.UIImage) -> Swift.Bool
   @objc public func setBackgroundEffectColor(color: UIKit.UIColor) -> Swift.Bool
   @objc public func setSystemBackgroundColor(color: UIKit.UIColor) -> Swift.Bool
   @objc public func systemNavigationBarTextColor(color: UIKit.UIColor) -> Swift.Bool

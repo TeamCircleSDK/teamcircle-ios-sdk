@@ -21,34 +21,34 @@ typedef NS_ENUM(NSUInteger, EMThreadOperation) {
 
 /*!
  *  \~chinese
- *  子区操作事件类
+ *  子区事件类。
  *
  *  \~english
- *  The sub-zone event class
+ *  The message thread event class.
  */
 @interface EMChatThreadEvent : NSObject
 /*!
  *  \~chinese
- *  接收到别人对子区的操作类型
+ *  子区事件类型。
  *
  *  \~english
- *  Received the operation type of the sub-area from others
+ *  The message thread event type.
  */
 @property (readonly) EMThreadOperation type;
 /*!
  *  \~chinese
- *  操作子区的用户id
+ *  子区操作者的用户 ID。
  *
  *  \~english
- *  User id of the operation sub-area
+ *  The user ID of the message thread operator.
  */
 @property (readonly) NSString *from;
 /*!
  *  \~chinese
- *  子区对象
+ *  子区对象。
  *
  *  \~english
- *  sub-zone object
+ *  The message thread object.
  */
 @property (readonly) EMChatThread *chatThread;
 

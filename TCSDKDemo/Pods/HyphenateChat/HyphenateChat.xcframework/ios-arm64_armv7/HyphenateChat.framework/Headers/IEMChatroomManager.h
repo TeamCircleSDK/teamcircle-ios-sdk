@@ -691,6 +691,28 @@
  */
 - (void)isMemberInWhiteListFromServerWithChatroomId:(NSString *_Nonnull)aChatroomId
                                          completion:(void (^_Nullable)(BOOL inWhiteList, EMError *_Nullable aError))aCompletionBlock;
+
+/**
+ *  \~chinese
+ *  查看当前用户是否在聊天室禁言名单中。
+ *
+ *  异步方法。
+ *
+ *  @param aChatroomId      聊天室 ID。
+ *  @param aCompletionBlock 该方法完成调用的回调。如果该方法调用失败，会包含调用失败的原因。
+ *
+ *
+ *  \~english
+ *  Checks whether the current user is on the mute list.
+ *
+ *  This is an asynchronous method.
+ *
+ *  @param aChatroomId      The chatroom ID.
+ *  @param aCompletionBlock The completion block, which contains the error message if the method call fails.
+ *
+ */
+- (void)isMemberInMuteListFromServerWithChatroomId:(NSString *_Nonnull)aChatroomId
+                                        completion:(void (^_Nullable)(BOOL inMuteList, EMError *_Nullable aError))aCompletionBlock;
 /**
  *  \~chinese
  *  获取聊天室公告。

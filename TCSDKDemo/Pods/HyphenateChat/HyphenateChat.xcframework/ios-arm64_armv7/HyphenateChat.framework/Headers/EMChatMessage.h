@@ -27,7 +27,7 @@
 typedef NS_ENUM(NSInteger, EMChatType) {
     EMChatTypeChat   = 0,   /** \~chinese 单聊。  \~english One-to-one chat. */
     EMChatTypeGroupChat,    /** \~chinese 群聊。  \~english Group chat. */
-    EMChatTypeChatRoom,     /** \~chinese 聊天室。  \~english Chatroom. */
+    EMChatTypeChatRoom,     /** \~chinese 聊天室。  \~english Chat room. */
 };
 
 /**
@@ -35,7 +35,7 @@ typedef NS_ENUM(NSInteger, EMChatType) {
  *  消息发送状态。
  *
  *  \~english
- *  The message delivery status types.
+ *  The message delivery states.
  */
 typedef NS_ENUM(NSInteger, EMMessageStatus) {
     EMMessageStatusPending  = 0,    /** \~chinese 发送未开始。 \~english The message delivery is pending.*/
@@ -49,7 +49,7 @@ typedef NS_ENUM(NSInteger, EMMessageStatus) {
  *  消息方向类型。
  *
  *  \~english
- *  The message direction types.
+ *  The message directions.
  */
 typedef NS_ENUM(NSInteger, EMMessageDirection) {
     EMMessageDirectionSend = 0,    /** \~chinese 该消息是当前用户发送出去的。\~english This message is sent from the local client.*/
@@ -58,15 +58,15 @@ typedef NS_ENUM(NSInteger, EMMessageDirection) {
 
 /**
  *  \~chinese
- *  聊天室消息优先级。
+ *  聊天室消息的送达优先级。
  *
  *  \~english
- *  Chatroom message priority.
+ *  The delivery priorities of chat room messages.
  */
 typedef NS_ENUM(NSInteger, EMChatRoomMessagePriority)  {
     EMChatRoomMessagePriorityHigh = 0, /* \~chinese 高。 \~english High. */
     EMChatRoomMessagePriorityNormal, /* \~chinese 中。 \~english Normal. */
-    EMChatRoomMessagePriorityLow, /* \~chinese 低。 \~english Lower. */
+    EMChatRoomMessagePriorityLow, /* \~chinese 低。 \~english Low. */
 };
 
 
@@ -130,22 +130,28 @@ typedef NS_ENUM(NSInteger, EMChatRoomMessagePriority)  {
  *  服务器收到该消息的 Unix 时间戳，单位为毫秒。
  *
  *  \~english
- *  The Unix timestamp for the chat server receiving the message. The unit is second.
+ *  The Unix timestamp for the chat server receiving the message. 
+ * 
+ *  The unit is second.
  */
 @property (nonatomic) long long timestamp;
 
 /**
  *  \~chinese
- *  客户端发送/收到此消息的时间。
+ *  客户端发送或收到此消息的时间。
+ * 
+ *  单位为毫秒。
  *
  *  \~english
  *  The Unix timestamp for the local client sending or receiving the message.
+ * 
+ * The unit is millisecond.
  */
 @property (nonatomic) long long localTime;
 
 /**
  *  \~chinese
- *  消息类型。
+ *  聊天类型。
  *
  *  \~english
  *  The chat type.
@@ -163,49 +169,71 @@ typedef NS_ENUM(NSInteger, EMChatRoomMessagePriority)  {
 
 /*!
  *  \~chinese
- *  消息在线状态（本地数据库不存储，从数据库读取或拉取漫游消息默认值是 YES）
+
+ *  是否为在线消息：
+ *  - `YES`: 在线消息。
+ *  - `NO`:  离线消息。
+ *  
+ *  消息的在线状态在本地数据库不存储。
+ * 
+ * 从数据库读取或拉取的漫游消息默认值为在线。
  *
- *  \~english (Local database does not store. The default value for reading or pulling roaming messages from the database is YES)
- *  Message Online Status
+ *  \~english 
+ * 
+ *  Whether the message is an online message:
+ *  - `YES`: online message. 
+ *  - `NO`: offline message.
+ * 
+ * This message status is not stored in the local database. 
+ * 
+ * Messages read from the database or pulled from the server are regarded as online.
+ * 
+ * 
  */
 @property (nonatomic, readonly) BOOL onlineState;
 
 /**
  *  \~chinese
- *  是否已发送（消息接收方）或收到（消息发送方）消息已读回执。
+ *  是否（消息接收方）已发送或（消息发送方）已收到消息已读回执。
  *
  * - `YES`: 是；
  * - `NO`: 否。
  *
  *  \~english
- *  Whether the message read receipt (from the message sender) is sent or received (by the message recipient).
+ *  Whether the message read receipt is sent (from the message recipient) or received (by the message sender).
  *
- *  - `Yes`: Yes;
- *  - `No`: No.
+ *  - `YES`: Yes;
+ *  - `NO`: No.
  */
 @property (nonatomic) BOOL isReadAcked;
 
 /**
  *  \~chinese
- *  是否是在thread内发的消息
+ *  是否是在子区内发送的消息：
+ * 
+ *  - `YES`: 是；
+ *  - `NO`: 否。
  *
  *  \~english
- *  Is it a message sent within a thread
+ *  Whether this message is sent within a thread:
+ * 
+ *  - `YES`: Yes;
+ *  - `NO`: No.
  */
 @property (nonatomic) BOOL isChatThreadMessage;
 
 /**
  *  \~chinese
- *  是否需要发送群组已读消息回执。
+ *  是否需要发送群组已读消息回执：
  *
  * - `YES`: 是；
- * - `NO`: 否。
+ * - `NO`: 否。 
  *
  *  \~english
  *  Whether read receipts are required for group messages.
  *
- *  - `Yes`: Yes;
- *  - `No`: No.
+ *  - `YES`: Yes;
+ *  - `NO`: No.
  */
 @property (nonatomic) BOOL isNeedGroupAck;
 
@@ -214,26 +242,34 @@ typedef NS_ENUM(NSInteger, EMChatRoomMessagePriority)  {
  *  收到的群组已读消息回执数量。
  *
  *  \~english
- *  The number of read receipts for group messages.
+ *  The number of read receipts received for group messages.
  */
 @property (nonatomic, readonly) int groupAckCount;
 
 /**
  *  \~chinese
  *  是否已发送或收到消息送达回执。
+ * 
+ *  - `YES`: 是；
+ *  - `NO`: 否。
  *
- *      - 对于消息发送方，该属性表示是否已收到送达回执。
- *      - 对于消息接收方，该属性表示是否已发送送达回执。
+ *  对于消息发送方，该属性表示是否已收到送达回执。
+ * 
+ *  对于消息接收方，该属性表示是否已发送送达回执。
  *
- *  如果你将 EMOptions 中的 `enableDeliveryAck` 设为 `YES`，则 SDK 在收到消息后会自动发送送法回执。
+ *  如果你将 `EMOptions` 中的 `enableDeliveryAck` 设为 `YES`，则 SDK 在收到消息后会自动发送送法回执。
  *
  *  \~english
+ *  Whether the delivery receipt is sent or received:
+ * 
+ *  - `YES`: Yes;
+ *  - `NO`: No.
+
  *  For the message sender, this property indicates whether the delivery receipt is received.
+ * 
+ *  For the message recipient, this property indicates whether the delivery receipt is sent.
  *
- *      - For the message sender, this property indicates whether the delivery receipt is received.
- *      - For the message recipient, this property indicates whether the delivery receipt is sent.
- *
- *  If you set `enableDeliveryAck` in EMOptions as `YES`, the SDK automatically sends the delivery receipt after receiving a message.
+ *  If you set `enableDeliveryAck` in `EMOptions` as `YES`, the SDK automatically sends the delivery receipt after receiving a message.
  */
 @property (nonatomic) BOOL isDeliverAcked;
 
@@ -247,8 +283,8 @@ typedef NS_ENUM(NSInteger, EMChatRoomMessagePriority)  {
  *  \~english
  *  Whether the message is read.
  *
- *  - `Yes`: Yes;
- *  - `No`: No.
+ *  - `YES`: Yes;
+ *  - `NO`: No.
  */
 @property (nonatomic) BOOL isRead;
 
@@ -262,8 +298,8 @@ typedef NS_ENUM(NSInteger, EMChatRoomMessagePriority)  {
  *  \~english
  *  Whether the voice message is played.
  *
- *  - `Yes`: Yes;
- *  - `No`: No.
+ *  - `YES`: Yes;
+ *  - `NO`: No.
  */
 @property (nonatomic) BOOL isListened;
 
@@ -311,24 +347,35 @@ typedef NS_ENUM(NSInteger, EMChatRoomMessagePriority)  {
  *  \~english
  *  The custom message extension.
  *
- *  This member is in the key-value format, where the key is the extension field name of the NSString type, and the value must be of the NSString or NSNumber(Bool, Int, unsigned int, long long, double) type.
+ *  This data is in the key-value format, where the key is the extension field name of the NSString type, and the value must be of the NSString or NSNumber (Bool, Int, unsigned int, long long, double) type.
  */
 @property (nonatomic, copy) NSDictionary * _Nullable ext;
 /**
  *  \~chinese
- *  获取消息内的thread概览（目前仅群组消息支持）
+ *  获取消息内的 thread 概览。
+ * 
+ *  目前仅群组消息支持。
  *
  *  \~english
- *  Get an overview of the thread in the message (currently only supported by group messages)
+ *  Gets an overview of the thread in the message.
+ * 
+ *  Currently, this attribute is valid only for group messages.
  */
 
 @property (readonly) EMChatThread * _Nullable chatThread;
 /**
  *  \~chinese
- *  设置聊天室消息的到达优先级（目前仅聊天室消息支持）不传默认为normal
+ * 
+ *  设置聊天室消息的到达优先级。
+ * 
+ *  目前，该属性仅支持聊天室消息。默认值为 `normal`。
  *
  *  \~english
- *  Setting priority of chatroom message.(Support only chatroom)  `default` normal,if not set.
+ *  Sets the delivery priority of a chat room message. 
+ * 
+ *  Currently, this attribute is valid only for chat room messages.
+ * 
+ *  The default value is `normal`.
  */
 @property (nonatomic) EMChatRoomMessagePriority  priority;
 

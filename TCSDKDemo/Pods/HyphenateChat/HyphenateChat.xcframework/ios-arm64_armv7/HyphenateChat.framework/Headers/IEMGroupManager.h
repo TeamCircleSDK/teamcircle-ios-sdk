@@ -742,6 +742,7 @@
  */
 - (void)isMemberInWhiteListFromServerWithGroupId:(NSString *_Nonnull)aGroupId
                                       completion:(void (^_Nullable)(BOOL inWhiteList, EMError *_Nullable aError))aCompletionBlock;
+
 /**
  *  \~chinese
  *  获取群公告。

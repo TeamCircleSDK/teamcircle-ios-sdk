@@ -12,7 +12,7 @@ PODS:
     - DeepDiff
     - libwebp
     - PINCache
-  - HyphenateChat (3.9.9)
+  - HyphenateChat (4.0.0)
   - IGListDiffKit (4.0.0)
   - IGListKit (4.0.0):
     - IGListDiffKit (= 4.0.0)
@@ -54,7 +54,7 @@ DEPENDENCIES:
   - EMVoiceConvert
   - FMDB
   - Giphy (~> 1.3.0)
-  - HyphenateChat (= 3.9.9)
+  - HyphenateChat (= 4.0.0)
   - IGListKit
   - lottie-ios (~> 3.2.1)
   - MJRefresh
@@ -97,7 +97,7 @@ SPEC CHECKSUMS:
   EMVoiceConvert: 32a0eaada94d93c151a5abd53ee174cd4e63b01f
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   Giphy: 7296cc64929aabf325655ac1472e1ec96b665ed4
-  HyphenateChat: 2237c9ece3f1bb54645dea0a9918f08e03e1516d
+  HyphenateChat: 9f6e4ac3b290e52cc0e52491f85d86097b35c285
   IGListDiffKit: 665d6cf43ce726e676013db9c7d6c4294259b6b2
   IGListKit: fd5a5d21935298f5849fa49d426843cff97b77c7
   libwebp: 60305b2e989864154bd9be3d772730f08fc6a59c
@@ -113,6 +113,6 @@ SPEC CHECKSUMS:
   WCDBOptimizedSQLCipher: baf44493b0c7a3d49e97bc5b64a3856f6428ddd1
   youtube-ios-player-helper: e9b97535e816db3152179d84d999bc1807ecd689
 
-PODFILE CHECKSUM: 8f30694691d0853081565fcd5428e5d77771e08f
+PODFILE CHECKSUM: c116f1508136e3a878ee57dbb822d6ee3e6f969f
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.12.1

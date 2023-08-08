@@ -13,88 +13,100 @@
 
 /*!
  *  \~chinese
- *  子区类
- *
+ *  子区模型类，用于定义子区属性。
+ * 
  *  \~english
- *  The sub-zone class
+ *  The message thread model class, which defines attributes of a message thread.
  */
 @interface EMChatThread : NSObject
 
 /*!
  *  \~chinese
- *  子区id
+ *  子区 ID。
  *
  *  \~english
- *  sub-zone id
+ *  The message thread ID.
  */
 @property (readonly) NSString *threadId;
 
 /*!
 *  \~chinese
-*  子区的名称(请求子区列表与子区详情都会有)
+*  子区名称。
 *
 *  \~english
-*  Subject of the sub-zone(There will be a list of requested sub-areas and sub-area details)
+*  The message thread name.
 */
 @property (nonatomic, strong) NSString *threadName;
 
 /*!
  *  \~chinese
- *  子区的创建者,需要请求获取子区详情接口后当前对象会有这个属性
+ *  子区创建者。
  *
  *  \~english
- *  create  of the sub-zone, require fetch thread's detail first
+ *  The message thread creator.
  */
 @property (readonly) NSString *owner;
 /*!
  *  \~chinese
- *  创建子区的messageId （可空，因为目前群消息可被撤回）
+ *  子区父消息 ID。
+ * 
+ *  该属性为空，表示父消息被撤回。
  *
  *  \~english
- *  A messageId that create sub-zone
+ *  The ID of the parent message of the message thread.
+ * 
+ *  If this attribute is empty, the parent message of the message thread is withdrawn.
  */
 @property (readonly) NSString *messageId;
 /*!
  *  \~chinese
- *  创建子区的会话id
+ *  子区所属的群组 ID。
  *
  *  \~english
- *  A channelId that create sub-zone
+ *  The group ID where the message thread belongs.
  */
 @property (readonly) NSString *parentId;
 
 
 /*!
  *  \~chinese
- *  子区的成员列表数目，需要请求获取子区详情接口后当前对象会有这个属性
+ *  子区成员数量。
+ * 
+ * 只有获取子区详情 {@link IEMChatThread#getChatThreadDetail:} 后，该属性才存在。
  *
  *  \~english
- *  Member list of the sub-zone, require fetch thread's detail first
+ *  The count of members in the message thread.
+ * 
+ *  This attribute exists only after you call {@link IEMChatThread#getChatThreadDetail:} to get details of a message thread.
  */
 @property (readonly) int membersCount;
 /*!
  *  \~chinese
- *  子区中的消息数
+ *  子区中的消息数。
  *
  *  \~english
- *  Number of messages in subsection
+ *  The number of messages in a message thread.
  */
 @property (readonly) int messageCount;
 /*!
  *  \~chinese
- *  子区创建的时间戳
+ *  子区创建的 Unix 时间戳，单位为毫秒。
  *
  *  \~english
- *  Timestamp of subarea creation
+ *  The Unix timestamp when the message thread is created. The unit is millisecond.
  */
 @property (readonly) int createAt;
 
 /*!
  *  \~chinese
- *  子区中最后一条消息，为空代表最后一条消息被撤回，不为空代表新消息
+ *  子区中的最新一条消息。
+ * 
+ *  若该属性为空，表示最后一条消息被撤回。
  *
  *  \~english
- *  The last message in the sub-area, if it is empty, it means the last message is withdrawn. If it is not empty, it means a new message.
+ *  The last reply in the message thread.
+ * 
+ *  If this attribute is empty, the last reply is withdrawn. 
  */
 @property (readonly) EMChatMessage *lastMessage;
 

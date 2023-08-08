@@ -616,6 +616,10 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) TCManager * 
 - (BOOL)setTextFontPricedecimalFrontWithFont:(UIFont * _Nullable)font color:(UIColor * _Nullable)color SWIFT_WARN_UNUSED_RESULT;
 - (BOOL)setIconFavoriteWithIcon:(UIImage * _Nonnull)icon SWIFT_WARN_UNUSED_RESULT;
 - (BOOL)setIconFavoriteSelectedWithIcon:(UIImage * _Nonnull)icon SWIFT_WARN_UNUSED_RESULT;
+- (BOOL)setIconProfileMyPostWithIcon:(UIImage * _Nonnull)icon SWIFT_WARN_UNUSED_RESULT;
+- (BOOL)setIconProfileMyPostSelectedWithIcon:(UIImage * _Nonnull)icon SWIFT_WARN_UNUSED_RESULT;
+- (BOOL)setIconProfileFavoriteWithIcon:(UIImage * _Nonnull)icon SWIFT_WARN_UNUSED_RESULT;
+- (BOOL)setIconProfileFavoriteSelectedWithIcon:(UIImage * _Nonnull)icon SWIFT_WARN_UNUSED_RESULT;
 - (BOOL)setIconTagWithIcon:(UIImage * _Nonnull)icon SWIFT_WARN_UNUSED_RESULT;
 - (BOOL)setIconTagSelectedWithIcon:(UIImage * _Nonnull)icon SWIFT_WARN_UNUSED_RESULT;
 - (BOOL)setIconLikeWithIcon:(UIImage * _Nonnull)icon SWIFT_WARN_UNUSED_RESULT;
@@ -631,6 +635,10 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) TCManager * 
 - (BOOL)setIconDisableSendGifWithIcon:(UIImage * _Nonnull)icon SWIFT_WARN_UNUSED_RESULT;
 - (BOOL)setIconEnableSendPhotoWithIcon:(UIImage * _Nonnull)icon SWIFT_WARN_UNUSED_RESULT;
 - (BOOL)setIconDisableSendPhotoWithIcon:(UIImage * _Nonnull)icon SWIFT_WARN_UNUSED_RESULT;
+- (BOOL)setIconStoreWithIcon:(UIImage * _Nonnull)icon SWIFT_WARN_UNUSED_RESULT;
+- (BOOL)setIconProfileWithIcon:(UIImage * _Nonnull)icon SWIFT_WARN_UNUSED_RESULT;
+- (BOOL)setIconChatWithIcon:(UIImage * _Nonnull)icon SWIFT_WARN_UNUSED_RESULT;
+- (BOOL)setIconMoreOperationWithIcon:(UIImage * _Nonnull)icon SWIFT_WARN_UNUSED_RESULT;
 /// Background dynamic effect color (comment selected, flashing)
 - (BOOL)setBackgroundEffectColorWithColor:(UIColor * _Nonnull)color SWIFT_WARN_UNUSED_RESULT;
 - (BOOL)setSystemBackgroundColorWithColor:(UIColor * _Nonnull)color SWIFT_WARN_UNUSED_RESULT;
