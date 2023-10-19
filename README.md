@@ -109,6 +109,7 @@ func teamCirleAccountProfileChange(accountName: String, avatarUrl: String, bio: 
 func shareJsonDownloaded(json: String)
 func notificationStateChanged(count: Int)
 func messageChanged(count: Int)
+func teamCircleTapProduct(productCode: String)
 }
 ```
 
@@ -164,6 +165,21 @@ public func userLogout()
 
 ```bash
 TCManager.sharedInstance.userLogout()
+```
+
+**Method:** deleteAccount
+
+**Description:** Description: Use this method to clear all personal data of the user in the server.
+
+**Parameters:**
+
+```bash
+public func deleteAccount(complete : ((Error?) -> Void))
+```
+**Sample Code:**
+
+```bash
+TCManager.sharedInstance.deleteAccount { error in }
 ```
 
 ## Actions and notifications
@@ -336,7 +352,7 @@ TCManager.sharedInstance.initNewPostBtn(frame: CGRect(x: 0, y: 0, width: 20, hei
 }
 ```
 
-## Share Json
+## Post Attachment
 Sometimes an app might have its own unique content that it wishes users can share along with the post. These contents are usually related with the core function of the app. Here are a few examples
 
 * An IoT cookware app can enable users to share their recipe program while posting gourmet photos.
@@ -582,6 +598,49 @@ TCManager.sharedInstance.setProductDescColor(color: UIColor.white)
 * **Method:** setIconBack <br> **Description:** Set icon for all back buttons.
 <img src="https://user-images.githubusercontent.com/114135053/193207889-fac83ce6-6499-4fd9-adf4-1b4e8c5fc1b4.png" width="40%">
 
+* **Method:** setIconEnableSendComment <br> **Description:** Set icon for enable to sending a comments.
+<img src="https://github.com/TeamCircleSDK/teamcircle-android-sdk/assets/114135053/77a48f4a-2846-4c33-ad3f-28eeb888d352" width="40%">
+
+* **Method:** setIconDisableSendComment <br> **Description:** Set icon for disable to sending a comments.
+<img src="https://github.com/TeamCircleSDK/teamcircle-android-sdk/assets/114135053/69c92f06-f607-4591-8334-16af2991797d" width="40%">
+
+* **Method:** setIconEnableSendGif <br> **Description:** Set icon for enable to sending a GIF.
+<img src="https://github.com/TeamCircleSDK/teamcircle-android-sdk/assets/114135053/0963274c-6fb0-4f62-b2a7-24a69435aeb3" width="40%">
+
+* **Method:** setIconDisableSendGif <br> **Description:** Set icon for disable to sending a GIF.
+<img src="https://github.com/TeamCircleSDK/teamcircle-android-sdk/assets/114135053/74aa020d-ff4b-4da0-9130-7c0d2d1313e1" width="40%">
+
+* **Method:** setIconEnableSendPhoto <br> **Description:** Set icon for enable to sending photos.
+<img src="https://github.com/TeamCircleSDK/teamcircle-android-sdk/assets/114135053/b2df3983-969d-4c6a-83c4-1493103f2abf" width="40%">
+
+* **Method:** setIconDisableSendPhoto <br> **Description:** Set icon for disable to sending photos.
+<img src="https://github.com/TeamCircleSDK/teamcircle-android-sdk/assets/114135053/2b0cd44f-1609-4f18-9060-7e7e8505b7fb" width="40%">
+
+* **Method:** setIconMoreOperation <br> **Description:** Set the more operation icon in the upper right corner of the post.
+<img src="https://github.com/TeamCircleSDK/teamcircle-android-sdk/assets/114135053/207fddbc-3d3f-4bd7-ba1c-419b257348a4" width="40%">
+
+* **Method:** setIconStore <br> **Description:** Set the icon of the store entrance.
+<img src="https://github.com/TeamCircleSDK/teamcircle-android-sdk/assets/114135053/9120307a-9f89-43d9-ade4-1d8352cf0216" width="40%">
+
+* **Method:** setIconProfile <br> **Description:** Set the icon of profile.
+<img src="https://github.com/TeamCircleSDK/teamcircle-android-sdk/assets/114135053/2f373b16-7786-4a50-b0c0-94b35226a6ce" width="40%">
+
+* **Method:** setIconChat <br> **Description:** Set the icon of chat.
+<img src="https://github.com/TeamCircleSDK/teamcircle-android-sdk/assets/114135053/9935826d-993b-4044-ab1f-161c047da353" width="40%">
+
+* **Method:** setIconProfileMyPost <br> **Description:** Set the icon of my post in profile.
+<img src="https://github.com/TeamCircleSDK/teamcircle-android-sdk/assets/114135053/09911c2c-4296-4d38-a4ee-5c63f0f349a0" width="40%">
+
+* **Method:** setIconProfileMyPostSelected <br> **Description:** Set the icon of my post seleted in Profile.
+<img src="https://github.com/TeamCircleSDK/teamcircle-android-sdk/assets/114135053/858d7621-357b-486a-b16b-d3d24892bdc6" width="40%">
+
+* **Method:** setIconProfileFavorite <br> **Description:** Set the icon of my favorite in profile.
+<img src="https://github.com/TeamCircleSDK/teamcircle-android-sdk/assets/114135053/8ec2a9d7-ff07-4056-87a1-43b461662aa4" width="40%">
+
+* **Method:** setIconProfileFavoriteSelected <br> **Description:** Set the icon of my favorite seleted in profile.
+<img src="https://github.com/TeamCircleSDK/teamcircle-android-sdk/assets/114135053/ef0b2a6d-38cb-45ba-8bc7-8b892ce518db" width="40%">
+
+
 Sample Code:
 ```bash
 TCManager.sharedInstance.setIconFavorite(icon: UIImage(named: "icon"))
@@ -594,6 +653,20 @@ TCManager.sharedInstance.setIconShare(icon: UIImage(named: "icon"))
 TCManager.sharedInstance.setIconComment(icon: UIImage(named: "icon"))
 TCManager.sharedInstance.setIconNewPost(icon: UIImage(named: "icon"))
 TCManager.sharedInstance.setIconBack(icon: UIImage(named: "icon"))
+TCManager.sharedInstance.setIconEnableSendComment(icon: UIImage(named: "icon"))
+TCManager.sharedInstance.setIconDisableSendComment(icon: UIImage(named: "icon"))
+TCManager.sharedInstance.setIconEnableSendGif(icon: UIImage(named: "icon"))
+TCManager.sharedInstance.setIconDisableSendGif(icon: UIImage(named: "icon"))
+TCManager.sharedInstance.setIconEnableSendPhoto(icon: UIImage(named: "icon"))
+TCManager.sharedInstance.setIconDisableSendPhoto(icon: UIImage(named: "icon"))
+TCManager.sharedInstance.setIconMoreOperation(icon: UIImage(named: "icon"))
+TCManager.sharedInstance.setIconStore(icon: UIImage(named: "icon"))
+TCManager.sharedInstance.setIconProfile(icon: UIImage(named: "icon"))
+TCManager.sharedInstance.setIconChat(icon: UIImage(named: "icon"))
+TCManager.sharedInstance.setIconProfileMyPost(icon: UIImage(named: "icon"))
+TCManager.sharedInstance.setIconProfileMyPostSelected(icon: UIImage(named: "icon"))
+TCManager.sharedInstance.setIconProfileFavorite(icon: UIImage(named: "icon"))
+TCManager.sharedInstance.setIconProfileFavoriteSelected(icon: UIImage(named: "icon"))
 ```
 ## Colors
 
