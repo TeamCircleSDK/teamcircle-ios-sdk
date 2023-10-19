@@ -6,7 +6,7 @@
 	<dict>
 		<key>.DS_Store</key>
 		<data>
-		A80c8p8V+v/YkQ0YmdFpppSNzgk=
+		lp2vXpvFZBUlxKTA/IFACMcNLNw=
 		</data>
 		<key>Circle.storyboardc/06R-89-3YG-view-pDh-Vl-EjT.nib/objects-11.0+.nib</key>
 		<data>
@@ -902,7 +902,7 @@
 		</data>
 		<key>Headers/TCCircleHomeVCtrl.h</key>
 		<data>
-		+myFNTidqf4wrzJ85F0Ae1J3D6U=
+		jqYBqgCam827068f0jA5/IfWCCU=
 		</data>
 		<key>Headers/TCEaseIMHeader.h</key>
 		<data>
@@ -930,15 +930,15 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		C75UFy7Q1oeH4Mdw98tSbHJHhz0=
+		gNwh7cOrs9wr0phV4jCtFcExr/M=
 		</data>
 		<key>Modules/TeamCircleSDK.swiftmodule/Project/arm64-apple-ios.swiftsourceinfo</key>
 		<data>
-		srnwBwpyloimMJ1pX838qc047AE=
+		U7pP9YBLsHotAt5gP1MjrCcDG6c=
 		</data>
 		<key>Modules/TeamCircleSDK.swiftmodule/arm64-apple-ios.abi.json</key>
 		<data>
-		2C5JQ+Sqzkq84B+LnLRvykJg2nY=
+		h++dJ8oloaUUfUHeBX0wIzMoZA8=
 		</data>
 		<key>Modules/TeamCircleSDK.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
 		<data>
@@ -954,7 +954,7 @@
 		</data>
 		<key>Modules/TeamCircleSDK.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<data>
-		Nr94Hvo6p+I8H7WQkhxrwbUC97s=
+		4UKbiVy4ZjJec6wGwcxkLfBbZgA=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -8150,11 +8150,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			+myFNTidqf4wrzJ85F0Ae1J3D6U=
+			jqYBqgCam827068f0jA5/IfWCCU=
 			</data>
 			<key>hash2</key>
 			<data>
-			kvNTMZqi6JIY5Etq8uNThsab6ZO7m0k/Asq+a2aKutc=
+			C8uAI9NQVJ21MA95Qzx2peqv8BSUXGpN+y0g9wxnzzE=
 			</data>
 		</dict>
 		<key>Headers/TCEaseIMHeader.h</key>
@@ -8227,22 +8227,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			srnwBwpyloimMJ1pX838qc047AE=
+			U7pP9YBLsHotAt5gP1MjrCcDG6c=
 			</data>
 			<key>hash2</key>
 			<data>
-			rGHMMfxGlzFoXTrWBWsh1p01Lu3kMyZZp7EOebdu9q0=
+			erfvENMZKdKEaHr7ojWhwhB7xD+FcNqPOoF7RZADAwA=
 			</data>
 		</dict>
 		<key>Modules/TeamCircleSDK.swiftmodule/arm64-apple-ios.abi.json</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			2C5JQ+Sqzkq84B+LnLRvykJg2nY=
+			h++dJ8oloaUUfUHeBX0wIzMoZA8=
 			</data>
 			<key>hash2</key>
 			<data>
-			dAhEtwcndxv65l3dd6UO3CKgIflq5JYqSkBlEWEz66k=
+			axb3bCzQ8rr+H0ml4Ns0NhokNLt7CbM3/kDHJLDrOx0=
 			</data>
 		</dict>
 		<key>Modules/TeamCircleSDK.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
@@ -8282,11 +8282,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			Nr94Hvo6p+I8H7WQkhxrwbUC97s=
+			4UKbiVy4ZjJec6wGwcxkLfBbZgA=
 			</data>
 			<key>hash2</key>
 			<data>
-			yMdOkOA49XTvv3hXz65LPvwWNPkyDOTowOKsGIE4tN4=
+			BkN+E7Duaa1sQ3ha8b6uy5VFczCFl8hOJWEd21D3b8c=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
