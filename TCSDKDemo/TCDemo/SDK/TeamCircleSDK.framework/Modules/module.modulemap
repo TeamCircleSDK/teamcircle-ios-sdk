@@ -1,7 +1,7 @@
 framework module TeamCircleSDK {
   umbrella header "TeamCircleSDK.h"
-
   export *
+
   module * { export * }
 }
 
