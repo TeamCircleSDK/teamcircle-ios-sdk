@@ -337,3 +337,7 @@
 "Hour" = "时";
 "Minute" = "分";
 "Description cannot be empty" = "描述不能为空";
+"More" = "更多";
+"Report comment" = "举报评论";
+"Hide" = "隐藏";
+"Hide Comment" = "隐藏评论";
