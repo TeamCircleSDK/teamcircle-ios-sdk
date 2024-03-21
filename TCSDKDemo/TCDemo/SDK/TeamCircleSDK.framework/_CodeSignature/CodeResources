@@ -6,7 +6,7 @@
 	<dict>
 		<key>.DS_Store</key>
 		<data>
-		IxmzKE8Z7j46N6RlaIkFda1vilA=
+		PP3IRFH52/M1WuXDanJpPjPRblM=
 		</data>
 		<key>Circle.storyboardc/06R-89-3YG-view-pDh-Vl-EjT.nib/objects-11.0+.nib</key>
 		<data>
@@ -934,11 +934,11 @@
 		</data>
 		<key>Modules/TeamCircleSDK.swiftmodule/Project/arm64-apple-ios.swiftsourceinfo</key>
 		<data>
-		V81lDy7LoEtX9+ZuC3hCuLHvqsY=
+		kqwjLhxQmkFK3rcv2snwhQDdPrs=
 		</data>
 		<key>Modules/TeamCircleSDK.swiftmodule/arm64-apple-ios.abi.json</key>
 		<data>
-		xJKv4HdbvczL2uVPS6+UROwfqa4=
+		yORz9bFkRzvfPfbaWh5apHq6ivM=
 		</data>
 		<key>Modules/TeamCircleSDK.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
 		<data>
@@ -954,7 +954,7 @@
 		</data>
 		<key>Modules/TeamCircleSDK.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<data>
-		5dQ+6hf/TXIe/WFiDA+gp+haroo=
+		Xzcn72gPq/uN9KmQjAhgIbbxlns=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -8227,22 +8227,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			V81lDy7LoEtX9+ZuC3hCuLHvqsY=
+			kqwjLhxQmkFK3rcv2snwhQDdPrs=
 			</data>
 			<key>hash2</key>
 			<data>
-			aIyEy1W00/c/EjtMaiXMgqrbUnP+EHx+r/w0eygnq9c=
+			2kw/udRzCc/iDgeIZcF20WiC8sxByVnXlskp56MmQ9U=
 			</data>
 		</dict>
 		<key>Modules/TeamCircleSDK.swiftmodule/arm64-apple-ios.abi.json</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			xJKv4HdbvczL2uVPS6+UROwfqa4=
+			yORz9bFkRzvfPfbaWh5apHq6ivM=
 			</data>
 			<key>hash2</key>
 			<data>
-			aeWIPnE/szL5XxuowgBHfmivS4R6Ret3N/Jw5SB4uk0=
+			iCYHHxXF5gWVwCZlJwReo5TEwqaLBElMzsgab5sCzAU=
 			</data>
 		</dict>
 		<key>Modules/TeamCircleSDK.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
@@ -8282,11 +8282,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			5dQ+6hf/TXIe/WFiDA+gp+haroo=
+			Xzcn72gPq/uN9KmQjAhgIbbxlns=
 			</data>
 			<key>hash2</key>
 			<data>
-			jGUXm06Kp8B6JFnriT2hbfttVsy0vkduzriMsx9J9/w=
+			SaN00BWoi1o1MXZilvu93ZWRgsk1P8haZb5rtoTeZ6c=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
