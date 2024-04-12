@@ -4,10 +4,6 @@
 <dict>
 	<key>files</key>
 	<dict>
-		<key>.DS_Store</key>
-		<data>
-		5ksBTHxSbIpjJv2DTsSIL3mfvg4=
-		</data>
 		<key>Circle.storyboardc/06R-89-3YG-view-pDh-Vl-EjT.nib/objects-11.0+.nib</key>
 		<data>
 		+PcrZDAiG8k+Ti1LsiSsQZTzbOU=
@@ -934,7 +930,7 @@
 		</data>
 		<key>Modules/TeamCircleSDK.swiftmodule/Project/arm64-apple-ios.swiftsourceinfo</key>
 		<data>
-		6KoQHpZyNI7pdortGr5BVFxTk48=
+		mmJWKaQ2dKdN1rs4OQXSwwI7S2c=
 		</data>
 		<key>Modules/TeamCircleSDK.swiftmodule/arm64-apple-ios.abi.json</key>
 		<data>
@@ -8227,11 +8223,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			6KoQHpZyNI7pdortGr5BVFxTk48=
+			mmJWKaQ2dKdN1rs4OQXSwwI7S2c=
 			</data>
 			<key>hash2</key>
 			<data>
-			4NEdYtW+w27v34ZohHrnsEK+IlX7pt/iQsXYrQjeqng=
+			kzh7M1yeyUG0n36HMpqInF6JJ4hDX86t1cgfm6oAvHg=
 			</data>
 		</dict>
 		<key>Modules/TeamCircleSDK.swiftmodule/arm64-apple-ios.abi.json</key>
